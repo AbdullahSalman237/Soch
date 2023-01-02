@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">soch</string>
+    <string name="splash_screen">Splash Screen</string>
+    <string name="mobile_app">Mobile App</string>
+    <string name="enter_details">Enter Details</string>
+    <string name="name">نام</string>
+    <string name="age">عمر</string>
+    <string name="medicationtime">ادویات کا وقت</string>
+    <string name="todo">TODO</string>
+    <string name="quiz">QUIZ</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name= "start_qiuz">Start Quiz</string>
+    <string name="new_quiz">Start New Quiz</string>
+    <string name="ans1">Button</string>
+    <string name="ans2">Button</string>
+    <string name="ans3">TextView</string>
+    <string name="ans4">Button</string>
+    <string name="ans5">Button</string>
+    <string name="imageee">TODO</string>
+    <string name="quizless">Quiz</string>
+    <string name="god_s_eye">God\'s Eye</string>
+    <string name="ansone">ans1</string>
+    <string name="anstwo">ans2</string>
+    <string name="ansthree">ans3</string>
+    <string name="ansfour">ans4</string>
+    <string name="ansonee">Button</string>
+    <string name="anstwoo">Button</string>
+    <string name="ansthreeee">Button</string>
+    <string name="ansfourr">Button</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="_4">4</string>
+
+</resources>
