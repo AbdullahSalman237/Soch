@@ -30,8 +30,8 @@ public class Dashboard extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListner);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new User()).commit();
-
     }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListner = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
