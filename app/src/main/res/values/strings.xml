@@ -32,5 +32,30 @@
     <string name="_2">2</string>
     <string name="_3">3</string>
     <string name="_4">4</string>
+    <string name="quizz">کوئز(Quiz)</string>
+    <string name="_0">0</string>
+    <string name="score">سکور(score)</string>
+    <string name="aik">۱</string>
+    <string name="teen">۳</string>
+    <string name="chaar">۴</string>
+    <string name="dkdkdk">TODO</string>
+    <string name="dododo">doosrahai</string>
+    <string name="kssd">۲</string>
+    <string name="shurur">کوئز شروع کریں؟</string>
+    <string name="dssdsd">TODO</string>
+    <string name="skskslala">TODO</string>
+    <string name="details">مریض کی تفصیلات</string>
+    <string name="logooo">TODO</string>
+    <string name="oldcover">TODO</string>
+    <string name="kdkdkd">TODO</string>
+    <string name="signupp">سائن اپ</string>
+    <string name="darjkarein">درج کریں</string>
+    <string name="_10">/10</string>
+    <string name="zero">0</string>
+    <string name="capture">Button</string>
+    <string name="cameraa">TODO</string>
+    <string name="cameraaa">TODO</string>
+    <string name="click">کلک کریں</string>
+    <string name="godseye">گوڈ آیے</string>
 
 </resources>

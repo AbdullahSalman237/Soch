@@ -5,44 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@drawable/colouring"
+    android:background="@drawable/testanother"
+    android:textAlignment="center"
     tools:context=".QuizSimulation">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Score"
         android:id="@+id/ScoreBox"
-        android:layout_marginVertical="20dp"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/black"
-        />
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
-        android:layout_marginHorizontal="2dp"
-        app:layout_constraintStart_toEndOf="@id/ScoreBox"
-        android:id="@+id/score"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        android:text="0"
+        android:layout_marginStart="140dp"
+        android:text="@string/score"
         android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/option4"
+        app:layout_constraintVertical_bias="0.372" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="2dp"
+        android:layout_marginVertical="20dp"
+        android:layout_marginEnd="140dp"
+        android:text="@string/_0"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/option1"
+        app:layout_constraintVertical_bias="0.362"
         tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="453dp"
-        android:layout_height="192dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="195dp"
+        android:layout_height="149dp"
         android:contentDescription="@string/imageee"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.254"
         tools:ignore="ImageContrastCheck"
         tools:src="@drawable/logo" />
 
@@ -51,65 +61,85 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="92dp"
         android:layout_marginEnd="104dp"
-        android:text="@string/quizless"
+        android:text="@string/quizz"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/option1"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="136dp"
+        android:layout_width="132dp"
+        android:layout_height="74dp"
+        android:layout_marginBottom="188dp"
         android:background="@drawable/round"
-        android:text="@string/_4"
+        android:text="@string/chaar"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.839"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/option2"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="288dp"
-        android:background="@drawable/round"
-        android:text="@string/_2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.839"
+        app:layout_constraintHorizontal_bias="0.752"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/option3"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="288dp"
+        android:layout_width="132dp"
+        android:layout_height="74dp"
+        android:layout_marginBottom="292dp"
         android:background="@drawable/round"
-        android:text="@string/_1"
+        android:text="@string/aik"
         android:textColor="#F3F0EF"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.21"
+        app:layout_constraintHorizontal_bias="0.197"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
 
     <Button
         android:id="@+id/option4"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="136dp"
+        android:layout_width="132dp"
+        android:layout_height="74dp"
+        android:layout_marginBottom="192dp"
         android:background="@drawable/round"
-        android:text="@string/_3"
+        android:text="@string/teen"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.21"
+        app:layout_constraintHorizontal_bias="0.197"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/option2"
+        android:layout_width="132dp"
+        android:layout_height="74dp"
+        android:layout_marginBottom="292dp"
+        android:background="@drawable/round"
+        android:backgroundTint="@color/design_default_color_background"
+        android:text="@string/kssd"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.752"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="104dp"
+        android:layout_height="113dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/dkdkdk" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
