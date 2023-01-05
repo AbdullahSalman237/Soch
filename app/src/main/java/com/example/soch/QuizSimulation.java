@@ -2,6 +2,7 @@ package com.example.soch;
 
 import android.app.Dialog;
 import android.app.TaskInfo;
+import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -31,17 +32,65 @@ public class QuizSimulation extends Fragment {
     private DBHandler db;
     private int size=0;
     int score=0;
+    private Boolean quizStarted=false;
     private int i =0;
-    private Button button1,button2,button3,button4,start_quiz,new_quiz;
+    private Button button1,button2,button3,button4,start_quiz,new_quiz,cancel_quiz,resume_quiz;
     private int objects[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
     private TextView textView1,textView2,textView3,textView4,textViewScore,result;
     private ImageView imageView;
+
+    String x=null;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_quiz_simulation, container, false);
+        ((Dashboard) getActivity()).passVal(new Dashboard.FragmentCommunicator() {
+            @Override
+            public void passData(String name) {
+                x=name;
+                Toast.makeText(getContext(), name, Toast.LENGTH_SHORT).show();
+                if (quizStarted)
+                {
+                    Dialog dialog = new Dialog(getContext());
+                    dialog.setContentView(R.layout.cancel_quiz);
+                    dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    dialog.setCancelable(false);
+                    cancel_quiz=dialog.findViewById(R.id.cancel_quiz);
+                    resume_quiz=dialog.findViewById(R.id.resume_quiz);
+                    resume_quiz.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+                    cancel_quiz.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            if (name=="home") {
+                                ((Dashboard) getActivity()).cancelQuiz=false;
+                                ((Dashboard) getActivity()).changeInInterface(new User());
+
+                            }else if(name=="quiz")
+                                ((Dashboard) getActivity()).changeInInterface(new QuizSimulation());
+                            else if (name=="godseye"){
+                                ((Dashboard) getActivity()).cancelQuiz=false;
+                                ((Dashboard) getActivity()).changeInInterface(new ObjectRecognizer());
+                        }}
+                    });
+                    dialog.show();
+                    Toast.makeText(getContext(),"Yes",Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                }
+
+            }
+        });
+        quizStarted=true;
         db= new DBHandler(getContext());
         textViewScore=(TextView)view.findViewById(R.id.score);
+
         Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.start_quiz);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -55,6 +104,7 @@ public class QuizSimulation extends Fragment {
             }
         });
         dialog.show();
+
         button1 = (Button)view.findViewById(R.id.option1);
         button2 = (Button)view.findViewById(R.id.option2);
         button3 = (Button)view.findViewById(R.id.option3);
