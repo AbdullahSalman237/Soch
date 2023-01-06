@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 public class SplashScreen extends AppCompatActivity {
 
+    DBHandler dbHandler = new DBHandler(SplashScreen.this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,8 +22,16 @@ public class SplashScreen extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
+                    if(dbHandler.checkData())
+                    {
+                        Intent intent = new Intent(getApplicationContext(), Dashboard.class);
+                        startActivity(intent);
+                    }
+                    else
+                    {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
+                    }
                 }
             }
         };

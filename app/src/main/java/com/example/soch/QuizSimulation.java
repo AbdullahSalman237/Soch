@@ -48,7 +48,7 @@ public class QuizSimulation extends Fragment {
             @Override
             public void passData(String name) {
                 x=name;
-                Toast.makeText(getContext(), name, Toast.LENGTH_SHORT).show();
+
                 if (quizStarted)
                 {
                     Dialog dialog = new Dialog(getContext());
@@ -197,52 +197,53 @@ public class QuizSimulation extends Fragment {
     }
     public void SetQuiz()
     {
-        if(db.checkImages())
+        if(db.checkImages()) {
+            Toast.makeText(getContext(), "Returning", Toast.LENGTH_SHORT).show();
             return;
-
+        }
         Drawable dbDrawable ;
 
 
         dbDrawable=getResources().getDrawable(R.drawable.newspaper);
-        db.insetImage(dbDrawable, "NewsPaper","Document","op3","op4");//1
+        db.insetImage(dbDrawable, "اخبار","کاغزات","کتاب","رسالہ");//1
         dbDrawable=getResources().getDrawable(R.drawable.pen);
-        db.insetImage(dbDrawable, "Pen","Color","Stick","wire");//2
+        db.insetImage(dbDrawable, "قلم","کاغز","چھڑی","تنکا");//2
         dbDrawable=getResources().getDrawable(R.drawable.phone);
-        db.insetImage(dbDrawable, "Mobile Phone","box" ,"adapter","wire");//3
+        db.insetImage(dbDrawable, "موبائل فون","ڈبا" ,"بکسا","ٹیلی فون");//3
         dbDrawable=getResources().getDrawable(R.drawable.shoes);
-        db.insetImage(dbDrawable, "Shoes","Trouser","Shirt","socks");//4
+        db.insetImage(dbDrawable, "جوتا","پجاما","کمیز","جوراب");//4
         dbDrawable=getResources().getDrawable(R.drawable.tissuse_box);
-        db.insetImage(dbDrawable, "Tissuse Box","Box","o3","wire");//5
+        db.insetImage(dbDrawable, "ٹیشو کا ڈبا","کوڑا دان","ڈبا" ,"بکسا");//5
         dbDrawable=getResources().getDrawable(R.drawable.walking_stick);
-        db.insetImage(dbDrawable, "Walking Stick","wood","Stick","wire");//6
+        db.insetImage(dbDrawable, "چھڑی","تنکا","قلم","تار");//6
         dbDrawable=getResources().getDrawable(R.drawable.dustbin);
-        db.insetImage(dbDrawable, "Dustbin","Box","Stick","wire");//7
+        db.insetImage(dbDrawable, "کوڑا دان","ڈبا" ,"بکسا","ٹیشو کا ڈبا");//7
         dbDrawable=getResources().getDrawable(R.drawable.electric_heater);
-        db.insetImage(dbDrawable, "Electric Heater","Color","Stick","wire");//8
+        db.insetImage(dbDrawable, "ہیٹر","ڈبا" ,"بکسا","ٹیشو کا ڈبا");//8
         dbDrawable=getResources().getDrawable(R.drawable.glasses);
-        db.insetImage(dbDrawable, "Glasses","Color","Stick","wire");//9
+        db.insetImage(dbDrawable, "عینک","آلات سماعت","چھڑی","تار");//9
         dbDrawable=getResources().getDrawable(R.drawable.hair_brush);
-        db.insetImage(dbDrawable, "hairbrush","comb","Stick","wire");//10
+        db.insetImage(dbDrawable, "بالوں کا برش","تار","عینک","چابی");//10
         dbDrawable=getResources().getDrawable(R.drawable.hearing_aids);
-        db.insetImage(dbDrawable, "Hearing Aids","Color","Stick","wire");//11
+        db.insetImage(dbDrawable, "آلات سماعت","چھڑی","عینک","چابی");//11
         dbDrawable=getResources().getDrawable(R.drawable.keys);
-        db.insetImage(dbDrawable, "Keys","Color","Stick","wire");//12
+        db.insetImage(dbDrawable, "چابی","آلات سماعت","چھڑی","تار");//12
         dbDrawable=getResources().getDrawable(R.drawable.chair);
-        db.insetImage(dbDrawable, "chair","bench","Sofa","wire");//13
+        db.insetImage(dbDrawable, "کرسی","میز","صوفہ","دستر خواں");//13
         dbDrawable=getResources().getDrawable(R.drawable.table);
-        db.insetImage(dbDrawable, "table","couch","shelf","cupboard");//14
+        db.insetImage(dbDrawable,"میز", "کرسی","صوفہ","دستر خواں");//14
         dbDrawable=getResources().getDrawable(R.drawable.remote);
-        db.insetImage(dbDrawable, "Remote","Charger","Stick","wire");//15
+        db.insetImage(dbDrawable, "ریموٹ", "موبائل فون","ڈبا" ,"بکسا");//15
         dbDrawable=getResources().getDrawable(R.drawable.fork);
-        db.insetImage(dbDrawable, "fork","Spoon","Stick","wire");//16
+        db.insetImage(dbDrawable, "کانٹا","چمچ","چھری","پلیٹ");//16
         dbDrawable=getResources().getDrawable(R.drawable.plate);
-        db.insetImage(dbDrawable, "Plate","Tray","Dish","wire");//17
+        db.insetImage(dbDrawable, "پلیٹ","کانٹا","چمچ","چھری");//17
         dbDrawable=getResources().getDrawable(R.drawable.spoon);
-        db.insetImage(dbDrawable, "Spoon","Color","Stick","wire");//18
+        db.insetImage(dbDrawable, "چمچ","چھری","پلیٹ","کانٹا");//18
         dbDrawable=getResources().getDrawable(R.drawable.medicine);
-        db.insetImage(dbDrawable, "Medicine","Color","Stick","wire");//19
+        db.insetImage(dbDrawable, "ادویات","چمچ","پلیٹ","کانٹا");//19
         dbDrawable=getResources().getDrawable(R.drawable.glass);
-        db.insetImage(dbDrawable, "glass","Color","Stick","wire");//20
+        db.insetImage(dbDrawable, "گلاس","چمچ","پلیٹ","کانٹا");//20
     }
     public boolean EvaluteQuiz()
     {

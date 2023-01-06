@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.database.Cursor;
@@ -97,6 +98,13 @@ public class Dashboard extends AppCompatActivity {
     public void SetCancelQuiz()
     {
         cancelQuiz=false;
+    }
+    public void EditDetails()
+    {
+        Intent intent = new Intent(this,MainActivity.class);
+
+        startActivity(intent);
+
     }
 }
 
