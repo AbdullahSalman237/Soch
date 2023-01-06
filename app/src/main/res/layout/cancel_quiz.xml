@@ -5,37 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <Button
-        android:id="@+id/resume_quiz"
-        android:layout_width="234dp"
-        android:layout_height="129dp"
-        android:background="@drawable/round"
-        android:text="@string/resume"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.226"
-        tools:ignore="TextContrastCheck" />
-
-    <Button
-        android:id="@+id/cancel_quiz"
-        android:layout_width="234dp"
-        android:layout_height="129dp"
-        android:background="@drawable/round"
-        android:text="@string/cancel"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.886"
-        tools:ignore="TextContrastCheck" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -56,14 +25,46 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
         android:layout_marginTop="24dp"
+        android:contentDescription="@string/dssdsd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.293"
+        app:layout_constraintHorizontal_bias="0.282"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.151"
-        app:srcCompat="@drawable/puzzle"
-        android:contentDescription="@string/dssdsd" />
+        app:layout_constraintVertical_bias="0.136"
+        app:srcCompat="@drawable/puzzle" />
+
+    <Button
+        android:id="@+id/cancel_quiz"
+        android:layout_width="215dp"
+        android:layout_height="100dp"
+        android:background="@drawable/round"
+        android:text="@string/cancel"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.534"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/resume_quiz"
+        android:layout_width="215dp"
+        android:layout_height="100dp"
+        android:background="@drawable/round"
+        android:text="@string/resume"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.331"
+        tools:ignore="TextContrastCheck" />
 
     <ImageView
         android:id="@+id/imageView7"
