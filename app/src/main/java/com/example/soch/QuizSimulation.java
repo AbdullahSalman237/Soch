@@ -2,6 +2,7 @@ package com.example.soch;
 
 import android.app.Dialog;
 import android.app.TaskInfo;
+import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -31,17 +32,65 @@ public class QuizSimulation extends Fragment {
     private DBHandler db;
     private int size=0;
     int score=0;
+    private Boolean quizStarted=false;
     private int i =0;
-    private Button button1,button2,button3,button4,start_quiz,new_quiz;
+    private Button button1,button2,button3,button4,start_quiz,new_quiz,cancel_quiz,resume_quiz;
     private int objects[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
     private TextView textView1,textView2,textView3,textView4,textViewScore,result;
     private ImageView imageView;
+
+    String x=null;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_quiz_simulation, container, false);
+        ((Dashboard) getActivity()).passVal(new Dashboard.FragmentCommunicator() {
+            @Override
+            public void passData(String name) {
+                x=name;
+
+                if (quizStarted)
+                {
+                    Dialog dialog = new Dialog(getContext());
+                    dialog.setContentView(R.layout.cancel_quiz);
+                    dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    dialog.setCancelable(false);
+                    cancel_quiz=dialog.findViewById(R.id.cancel_quiz);
+                    resume_quiz=dialog.findViewById(R.id.resume_quiz);
+                    resume_quiz.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+                    cancel_quiz.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            if (name=="home") {
+                                ((Dashboard) getActivity()).cancelQuiz=false;
+                                ((Dashboard) getActivity()).changeInInterface(new User());
+
+                            }else if(name=="quiz")
+                                ((Dashboard) getActivity()).changeInInterface(new QuizSimulation());
+                            else if (name=="godseye"){
+                                ((Dashboard) getActivity()).cancelQuiz=false;
+                                ((Dashboard) getActivity()).changeInInterface(new ObjectRecognizer());
+                        }}
+                    });
+                    dialog.show();
+                    Toast.makeText(getContext(),"Yes",Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                }
+
+            }
+        });
+        quizStarted=true;
         db= new DBHandler(getContext());
         textViewScore=(TextView)view.findViewById(R.id.score);
+
         Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.start_quiz);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -55,6 +104,7 @@ public class QuizSimulation extends Fragment {
             }
         });
         dialog.show();
+
         button1 = (Button)view.findViewById(R.id.option1);
         button2 = (Button)view.findViewById(R.id.option2);
         button3 = (Button)view.findViewById(R.id.option3);
@@ -67,6 +117,9 @@ public class QuizSimulation extends Fragment {
     public void GenerateQuiz(){
         Image[] image = db.getImage();
         Random random = new Random();
+        int totalImages= image.length;
+        int iterator= totalImages/10;
+        Toast.makeText(getContext(),String.valueOf(totalImages),Toast.LENGTH_SHORT).show();
         i=random.nextInt(20);
 
 
@@ -147,52 +200,53 @@ public class QuizSimulation extends Fragment {
     }
     public void SetQuiz()
     {
-        if(db.checkImages())
+        if(db.checkImages()) {
+            Toast.makeText(getContext(), "Returning", Toast.LENGTH_SHORT).show();
             return;
-
+        }
         Drawable dbDrawable ;
 
 
         dbDrawable=getResources().getDrawable(R.drawable.newspaper);
-        db.insetImage(dbDrawable, "NewsPaper","Document","op3","op4");//1
+        db.insetImage(dbDrawable, "اخبار","کاغزات","کتاب","رسالہ");//1
         dbDrawable=getResources().getDrawable(R.drawable.pen);
-        db.insetImage(dbDrawable, "Pen","Color","Stick","wire");//2
+        db.insetImage(dbDrawable, "قلم","کاغز","چھڑی","تنکا");//2
         dbDrawable=getResources().getDrawable(R.drawable.phone);
-        db.insetImage(dbDrawable, "Mobile Phone","box" ,"adapter","wire");//3
+        db.insetImage(dbDrawable, "موبائل فون","ڈبا" ,"بکسا","ٹیلی فون");//3
         dbDrawable=getResources().getDrawable(R.drawable.shoes);
-        db.insetImage(dbDrawable, "Shoes","Trouser","Shirt","socks");//4
+        db.insetImage(dbDrawable, "جوتا","پجاما","کمیز","جوراب");//4
         dbDrawable=getResources().getDrawable(R.drawable.tissuse_box);
-        db.insetImage(dbDrawable, "Tissuse Box","Box","o3","wire");//5
+        db.insetImage(dbDrawable, "ٹیشو کا ڈبا","کوڑا دان","ڈبا" ,"بکسا");//5
         dbDrawable=getResources().getDrawable(R.drawable.walking_stick);
-        db.insetImage(dbDrawable, "Walking Stick","wood","Stick","wire");//6
+        db.insetImage(dbDrawable, "چھڑی","تنکا","قلم","تار");//6
         dbDrawable=getResources().getDrawable(R.drawable.dustbin);
-        db.insetImage(dbDrawable, "Dustbin","Box","Stick","wire");//7
+        db.insetImage(dbDrawable, "کوڑا دان","ڈبا" ,"بکسا","ٹیشو کا ڈبا");//7
         dbDrawable=getResources().getDrawable(R.drawable.electric_heater);
-        db.insetImage(dbDrawable, "Electric Heater","Color","Stick","wire");//8
+        db.insetImage(dbDrawable, "ہیٹر","ڈبا" ,"بکسا","ٹیشو کا ڈبا");//8
         dbDrawable=getResources().getDrawable(R.drawable.glasses);
-        db.insetImage(dbDrawable, "Glasses","Color","Stick","wire");//9
+        db.insetImage(dbDrawable, "عینک","آلات سماعت","چھڑی","تار");//9
         dbDrawable=getResources().getDrawable(R.drawable.hair_brush);
-        db.insetImage(dbDrawable, "hairbrush","comb","Stick","wire");//10
+        db.insetImage(dbDrawable, "بالوں کا برش","تار","عینک","چابی");//10
         dbDrawable=getResources().getDrawable(R.drawable.hearing_aids);
-        db.insetImage(dbDrawable, "Hearing Aids","Color","Stick","wire");//11
+        db.insetImage(dbDrawable, "آلات سماعت","چھڑی","عینک","چابی");//11
         dbDrawable=getResources().getDrawable(R.drawable.keys);
-        db.insetImage(dbDrawable, "Keys","Color","Stick","wire");//12
+        db.insetImage(dbDrawable, "چابی","آلات سماعت","چھڑی","تار");//12
         dbDrawable=getResources().getDrawable(R.drawable.chair);
-        db.insetImage(dbDrawable, "chair","bench","Sofa","wire");//13
+        db.insetImage(dbDrawable, "کرسی","میز","صوفہ","دستر خواں");//13
         dbDrawable=getResources().getDrawable(R.drawable.table);
-        db.insetImage(dbDrawable, "table","couch","shelf","cupboard");//14
+        db.insetImage(dbDrawable,"میز", "کرسی","صوفہ","دستر خواں");//14
         dbDrawable=getResources().getDrawable(R.drawable.remote);
-        db.insetImage(dbDrawable, "Remote","Charger","Stick","wire");//15
+        db.insetImage(dbDrawable, "ریموٹ", "موبائل فون","ڈبا" ,"بکسا");//15
         dbDrawable=getResources().getDrawable(R.drawable.fork);
-        db.insetImage(dbDrawable, "fork","Spoon","Stick","wire");//16
+        db.insetImage(dbDrawable, "کانٹا","چمچ","چھری","پلیٹ");//16
         dbDrawable=getResources().getDrawable(R.drawable.plate);
-        db.insetImage(dbDrawable, "Plate","Tray","Dish","wire");//17
+        db.insetImage(dbDrawable, "پلیٹ","کانٹا","چمچ","چھری");//17
         dbDrawable=getResources().getDrawable(R.drawable.spoon);
-        db.insetImage(dbDrawable, "Spoon","Color","Stick","wire");//18
+        db.insetImage(dbDrawable, "چمچ","چھری","پلیٹ","کانٹا");//18
         dbDrawable=getResources().getDrawable(R.drawable.medicine);
-        db.insetImage(dbDrawable, "Medicine","Color","Stick","wire");//19
+        db.insetImage(dbDrawable, "ادویات","چمچ","پلیٹ","کانٹا");//19
         dbDrawable=getResources().getDrawable(R.drawable.glass);
-        db.insetImage(dbDrawable, "glass","Color","Stick","wire");//20
+        db.insetImage(dbDrawable, "گلاس","چمچ","پلیٹ","کانٹا");//20
     }
     public boolean EvaluteQuiz()
     {
@@ -209,10 +263,11 @@ public class QuizSimulation extends Fragment {
             result=dialog2.findViewById(R.id.score_of);
             new_quiz=dialog2.findViewById(R.id.new_quiz);
             result.setText(String.valueOf(score));
-
+            Toast.makeText(getContext(),"Result",Toast.LENGTH_SHORT).show();
             new_quiz.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Toast.makeText(getContext(),"Inside button",Toast.LENGTH_SHORT).show();
                     i=0;
                     size=0;
                     score=0;
@@ -222,6 +277,7 @@ public class QuizSimulation extends Fragment {
                 }
             });
             dialog2.show();
+
             return true;
         }
         return false;

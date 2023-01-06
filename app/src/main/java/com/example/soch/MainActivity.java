@@ -31,10 +31,16 @@ public class MainActivity extends AppCompatActivity {
         dbHandler = new DBHandler(MainActivity.this);
       //  dbHandler.OnUpgrade();
         SubmitDetails = findViewById(R.id.signup);
-
-        if(dbHandler.checkData())
+        Cursor c;
+        c=dbHandler.RetrieveData();
+        if(c.moveToFirst())
         {
-            signup(findViewById(android.R.id.content).getRootView());
+            String name = c.getString(0);
+            String age = c.getString(1);
+            String med = c.getString(2);
+            NameEdt.setText(name);
+            AgeEdt.setText(age);
+            MedEdt.setText(med);
         }
 
         SubmitDetails.setOnClickListener(new View.OnClickListener() {
