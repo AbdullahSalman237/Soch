@@ -117,6 +117,9 @@ public class QuizSimulation extends Fragment {
     public void GenerateQuiz(){
         Image[] image = db.getImage();
         Random random = new Random();
+        int totalImages= image.length;
+        int iterator= totalImages/10;
+        Toast.makeText(getContext(),String.valueOf(totalImages),Toast.LENGTH_SHORT).show();
         i=random.nextInt(20);
 
 

@@ -119,9 +119,14 @@ public class DBHandler extends SQLiteOpenHelper {
         cursor2 = db.rawQuery("SELECT * FROM "+TABLE_IMAGE,null);
         int i=0;
         Image[] imageHelper;
+        int size=0;
 
-        imageHelper=new Image[24];
-
+        if (cursor2.moveToFirst()) {
+            do {
+            size++;
+            } while (cursor2.moveToNext());
+        }
+        imageHelper=new Image[size];
         if (cursor2.moveToFirst()) {
             do {
                 imageHelper[i]=new Image();
