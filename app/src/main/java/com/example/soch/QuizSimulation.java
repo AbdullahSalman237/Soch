@@ -260,10 +260,11 @@ public class QuizSimulation extends Fragment {
             result=dialog2.findViewById(R.id.score_of);
             new_quiz=dialog2.findViewById(R.id.new_quiz);
             result.setText(String.valueOf(score));
-
+            Toast.makeText(getContext(),"Result",Toast.LENGTH_SHORT).show();
             new_quiz.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Toast.makeText(getContext(),"Inside button",Toast.LENGTH_SHORT).show();
                     i=0;
                     size=0;
                     score=0;
@@ -273,6 +274,7 @@ public class QuizSimulation extends Fragment {
                 }
             });
             dialog2.show();
+
             return true;
         }
         return false;
