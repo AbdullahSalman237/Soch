@@ -40,7 +40,7 @@ public class QuizSimulation extends Fragment {
     private int i =0;
     private TextView button1,button2,button3,button4;
     private Button start_quiz,new_quiz,cancel_quiz,resume_quiz;
-    private int objects[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+
     private TextView textView1,textView2,textView3,textView4,textViewScore,result;
     private ImageView imageView;
 
@@ -73,13 +73,11 @@ public class QuizSimulation extends Fragment {
                         public void onClick(View v) {
                             dialog.dismiss();
                             if (name=="home") {
-                                ((Dashboard) getActivity()).cancelQuiz=false;
+                                ((Dashboard) getActivity()).QuizInProgress=false;
                                 ((Dashboard) getActivity()).changeInInterface(new User());
-
-                            }else if(name=="quiz")
-                                ((Dashboard) getActivity()).changeInInterface(new QuizSimulation());
+                            }
                             else if (name=="godseye"){
-                                ((Dashboard) getActivity()).cancelQuiz=false;
+                                ((Dashboard) getActivity()).QuizInProgress=false;
                                 ((Dashboard) getActivity()).changeInInterface(new ObjectRecognizer());
                         }}
                     });
