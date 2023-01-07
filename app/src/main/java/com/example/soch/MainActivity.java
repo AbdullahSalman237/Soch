@@ -32,14 +32,14 @@ public class MainActivity extends AppCompatActivity {
       //  dbHandler.OnUpgrade();
         SubmitDetails = findViewById(R.id.signup);//button
         Cursor c;
-        c=dbHandler.RetrieveData();
+        c=dbHandler.RetrieveData(); //cursor is retrieving the data
         if(c.moveToFirst())
         {
             String name = c.getString(0);
             String age = c.getString(1);
             String med = c.getString(2);
             NameEdt.setText(name);
-            AgeEdt.setText(age);
+            AgeEdt.setText(age); //yahan data set ho raha hai
             MedEdt.setText(med);
         }
 
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     public void fun()
     {
 
+
                 String PersonName = NameEdt.getText().toString();
                 String PersonAge = AgeEdt.getText().toString();
                 String PersonMed = MedEdt.getText().toString();
@@ -72,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 dbHandler.OnUpgradeUser();
 
                 dbHandler.addUser(PersonName, PersonAge, PersonMed);
-            }
+                //yahan database mein write ho raha hai
+    }
 
 
     }

@@ -22,7 +22,7 @@ public class SplashScreen extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    if(dbHandler.checkData())
+                    if(dbHandler.checkData()) //ager data present hai toh dashboard warna main
                     {
                         Intent intent = new Intent(getApplicationContext(), Dashboard.class);
                         startActivity(intent);

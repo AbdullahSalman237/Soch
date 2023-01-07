@@ -39,7 +39,7 @@ public class Dashboard extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener navListner = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            if (cancelQuiz == true)
+            if (cancelQuiz == true) //check if quiz chal raha ya nahin quiz chal raha toh true hogaya
             {
 
                 String x="";
