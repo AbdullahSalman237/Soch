@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -49,13 +50,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 fun();
-                signup(v);
 
             }
 
         });
     }
-    public void signup(View view) {
+    public void signup() {
         Intent intent = new Intent(this,Dashboard.class);
         //intent.putExtra(data jaiga ismein to second page)
         startActivity(intent);
@@ -65,17 +65,19 @@ public class MainActivity extends AppCompatActivity {
     public void fun()
     {
 
-
                 String PersonName = NameEdt.getText().toString();
                 String PersonAge = AgeEdt.getText().toString();
                 String PersonMed = MedEdt.getText().toString();
-
+                if(PersonName.matches("") ||PersonAge.matches("")
+                || PersonMed.matches("")){
+                    Toast.makeText(this, "fill in the blanks", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                signup();
                 dbHandler.OnUpgradeUser();
-
                 dbHandler.addUser(PersonName, PersonAge, PersonMed);
                 //yahan database mein write ho raha hai
     }
-
 
     }
 
