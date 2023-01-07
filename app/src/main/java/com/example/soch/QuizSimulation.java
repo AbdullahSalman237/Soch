@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -123,8 +124,8 @@ public class QuizSimulation extends Fragment {
         Random random = new Random();
         int totalImages= image.length;
         int iterator= totalImages/10;
-        Toast.makeText(getContext(),String.valueOf(totalImages),Toast.LENGTH_SHORT).show();
-        i=random.nextInt(20);
+
+        i=random.nextInt(totalImages);
 
 
 
@@ -135,15 +136,24 @@ public class QuizSimulation extends Fragment {
             public void onClick(View v) {
 
                 if (button1.getText().toString() == image[i].getImageId())
-                {       Toast.makeText(getContext(), "Correct", Toast.LENGTH_SHORT).show();
-                    score++;
-                }else Toast.makeText(getContext(),"Wrong",Toast.LENGTH_SHORT).show();
+                {
+                score++;
+                button1.setBackgroundResource(R.drawable.correct_button);
+            }
+                else {
 
+                button1.setBackgroundResource(R.drawable.buttoncolours);
+            }
                 Random random = new Random();
-                int x=random.nextInt(2);
+                int x=random.nextInt(iterator);
                 i+=x+1;
                 EvaluteQuiz();
-                DisplayQuiz(image[i]);
+                new Handler().postDelayed(new Runnable() {
+                    public void run () {
+                        DisplayQuiz(image[i]);
+                    }
+                }, 2000L); //2 seconds delay
+
 
             }
         });
@@ -152,16 +162,24 @@ public class QuizSimulation extends Fragment {
             public void onClick(View v) {
 
                 if (button2.getText().toString() == image[i].getImageId()) {
-                    Toast.makeText(getContext(), "Correct", Toast.LENGTH_SHORT).show();
-                    score++;
-                }
-                else Toast.makeText(getContext(),"Wrong",Toast.LENGTH_SHORT).show();
 
+                    score++;
+                    button2.setBackgroundResource(R.drawable.correct_button);
+                }
+                else {
+
+                    button2.setBackgroundResource(R.drawable.buttoncolours);
+                }
                 Random random = new Random();
-                int x=random.nextInt(2);
+                int x=random.nextInt(iterator);
                 i+=x+1;
                 EvaluteQuiz();
-                DisplayQuiz(image[i]);
+                new Handler().postDelayed(new Runnable() {
+                    public void run () {
+                        DisplayQuiz(image[i]);
+                    }
+                }, 2000L); //2 seconds delay
+
 
             }
         });
@@ -171,23 +189,27 @@ public class QuizSimulation extends Fragment {
             public void onClick(View v) {
 
                 if (button3.getText().toString() == image[i].getImageId()) {
-                    Toast.makeText(getContext(), "Correct", Toast.LENGTH_SHORT).show();
+
                     score++;
-                    button3.setBackgroundResource(R.color.correct_answer);
-                    sleep(2000);
+                    button3.setBackgroundResource(R.drawable.correct_button);
+
                 }
                 else {
-                    Toast.makeText(getContext(), "it is Wrong", Toast.LENGTH_SHORT).show();
-                    button3.setBackgroundResource(R.color.wrong_answer);
-                    button3.setBackgroundColor(R.color.wrong_answer);
-                    sleep(2000);
+
+                    button3.setBackgroundResource(R.drawable.buttoncolours);
+
                 }
                 Random random = new Random();
-                int x=random.nextInt(2);
+                int x=random.nextInt(iterator);
                 i+=x+1;
 
                 EvaluteQuiz();
-                DisplayQuiz(image[i]);
+                new Handler().postDelayed(new Runnable() {
+                    public void run () {
+                        DisplayQuiz(image[i]);
+                    }
+                }, 2000L); //2 seconds delay
+
 
             }
         });
@@ -196,16 +218,24 @@ public class QuizSimulation extends Fragment {
             public void onClick(View v) {
 
                 if (button4.getText().toString() == image[i].getImageId()) {
-                    Toast.makeText(getContext(), "Correct", Toast.LENGTH_SHORT).show();
                     score++;
-                }
-                else Toast.makeText(getContext(),"Wrong",Toast.LENGTH_SHORT).show();
+                    button4.setBackgroundResource(R.drawable.correct_button);
 
+                }
+                else {
+                    button4.setBackgroundResource(R.drawable.buttoncolours);
+                }
                 Random random = new Random();
-                int x=random.nextInt(2);
+                int x=random.nextInt(iterator);
                 i+=x+1;
                 EvaluteQuiz();
-                DisplayQuiz(image[i]);
+                new Handler().postDelayed(new Runnable() {
+                    public void run () {
+                        DisplayQuiz(image[i]);
+                    }
+                }, 2000L); //2 seconds delay
+
+
             }
         });
 
@@ -213,7 +243,7 @@ public class QuizSimulation extends Fragment {
     public void SetQuiz()
     {
         if(db.checkImages()) {
-            Toast.makeText(getContext(), "Returning", Toast.LENGTH_SHORT).show();
+
             return;
         }
         Drawable dbDrawable ;
@@ -297,10 +327,16 @@ public class QuizSimulation extends Fragment {
 
     private  void DisplayQuiz(Image image)
     {
+
+
         textView1=(TextView) view.findViewById(R.id.option1);
         textView2=(TextView) view.findViewById(R.id.option2);
         textView3=(TextView) view.findViewById(R.id.option3);
         textView4=(TextView) view.findViewById(R.id.option4);
+        textView1.setBackgroundResource(R.drawable.colouring);
+        textView2.setBackgroundResource(R.drawable.colouring);
+        textView3.setBackgroundResource(R.drawable.colouring);
+        textView4.setBackgroundResource(R.drawable.colouring);
 
         String option[]={image.getImageId(),image.getOption2(),image.getOption3(),image.getOption4()};
         Random random= new Random();
