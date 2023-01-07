@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Dashboard extends AppCompatActivity {
-    public Boolean cancelQuiz=false;
+    public Boolean QuizInProgress=false;
     FragmentCommunicator fragmentCommunicator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class Dashboard extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener navListner = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            if (cancelQuiz == true) //check if quiz chal raha ya nahin quiz chal raha toh true hogaya
+            if (QuizInProgress == true) //check if quiz chal raha ya nahin quiz chal raha toh true hogaya
             {
 
                 String x="";
@@ -59,20 +59,20 @@ public class Dashboard extends AppCompatActivity {
                 fragmentCommunicator.passData(x);
             }
 
-            if(cancelQuiz==false)
+            if(QuizInProgress==false)
             {
             switch (item.getItemId()) {
                 case R.id.home:
                     selectedFragment = new User();
-                    cancelQuiz=false;
+                    QuizInProgress=false;
                     break;
                 case R.id.quiz:
                     selectedFragment = new QuizSimulation();
-                    cancelQuiz=true;
+                    QuizInProgress=true;
                     break;
                 case R.id.godseye:
                     selectedFragment = new ObjectRecognizer();
-                    cancelQuiz=false;
+                    QuizInProgress=false;
                     break;
             }
                 changeInInterface(selectedFragment);
@@ -95,12 +95,8 @@ public class Dashboard extends AppCompatActivity {
     public void passVal(FragmentCommunicator fragmentCommunicator) {
         this.fragmentCommunicator = fragmentCommunicator;
     }
-    public void SetCancelQuiz()
-    {
-        cancelQuiz=false;
-    }
 
-    public void EditDetails()////
+    public void EditDetails()////Moving back to Main Activity (Sign Up) for updation
     {
         Intent intent = new Intent(this,MainActivity.class);
 
