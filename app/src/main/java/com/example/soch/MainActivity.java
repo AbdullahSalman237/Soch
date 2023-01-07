@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     //ActivityMainBinding binding;
-    private Button SubmitDetails,readCourseBtn;
+    private Button SubmitDetails;
     private DBHandler dbHandler;
     private EditText NameEdt, AgeEdt, MedEdt;
 

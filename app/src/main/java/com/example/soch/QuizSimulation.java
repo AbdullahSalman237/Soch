@@ -39,7 +39,7 @@ public class QuizSimulation extends Fragment {
     private Boolean quizStarted=false;
     private int i =0;
     private TextView button1,button2,button3,button4;
-    private Button start_quiz,new_quiz,cancel_quiz,resume_quiz;
+    private Button start_quiz,new_quiz,cancel_quiz,resume_quiz,resultToHome,resultToGD,startToHome,startToGd;
 
     private TextView textView1,textView2,textView3,textView4,textViewScore,result;
     private ImageView imageView;
@@ -94,7 +94,28 @@ public class QuizSimulation extends Fragment {
         dialog.setContentView(R.layout.start_quiz);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.setCancelable(false);
+        startToHome=dialog.findViewById(R.id.home);
+        startToGd=dialog.findViewById(R.id.godseye);
         start_quiz=dialog.findViewById(R.id.start_quiz);
+
+        startToGd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                ((Dashboard) getActivity()).QuizInProgress=false;
+                ((Dashboard) getActivity()).changeInInterface(new ObjectRecognizer());
+                dialog.dismiss();
+            }
+        });
+        startToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                ((Dashboard) getActivity()).QuizInProgress=false;
+                ((Dashboard) getActivity()).changeInInterface(new User());
+                dialog.dismiss();
+            }
+        });
 
         start_quiz.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,7 +167,7 @@ public class QuizSimulation extends Fragment {
                     public void run () {
                         DisplayQuiz(image[i]);
                     }
-                }, 2000L); //2 seconds delay
+                }, 200L); //2 seconds delay
 
 
             }
@@ -172,7 +193,7 @@ public class QuizSimulation extends Fragment {
                     public void run () {
                         DisplayQuiz(image[i]);
                     }
-                }, 2000L); //2 seconds delay
+                }, 200L); //2 seconds delay
 
 
             }
@@ -202,7 +223,7 @@ public class QuizSimulation extends Fragment {
                     public void run () {
                         DisplayQuiz(image[i]);
                     }
-                }, 2000L); //2 seconds delay
+                }, 200L); //2 seconds delay
 
 
             }
@@ -227,7 +248,7 @@ public class QuizSimulation extends Fragment {
                     public void run () {
                         DisplayQuiz(image[i]);
                     }
-                }, 2000L); //2 seconds delay
+                }, 200L); //2 seconds delay
 
 
             }
@@ -299,11 +320,34 @@ public class QuizSimulation extends Fragment {
             result=dialog2.findViewById(R.id.score_of);
             new_quiz=dialog2.findViewById(R.id.new_quiz);
             result.setText(String.valueOf(score));
-            Toast.makeText(getContext(),"Result",Toast.LENGTH_SHORT).show();
+            resultToGD=dialog2.findViewById(R.id.godseye);
+            resultToHome=dialog2.findViewById(R.id.home);
+            resultToGD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                ((Dashboard) getActivity()).QuizInProgress=false;
+                ((Dashboard) getActivity()).changeInInterface(new ObjectRecognizer());
+                dialog2.dismiss();
+            }
+        });
+            resultToHome.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    ((Dashboard) getActivity()).QuizInProgress=false;
+                    ((Dashboard) getActivity()).changeInInterface(new User());
+                    dialog2.dismiss();
+                }
+            });
+
+
+
+
             new_quiz.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(),"Inside button",Toast.LENGTH_SHORT).show();
+
                     i=0;
                     size=0;
                     score=0;

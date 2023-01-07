@@ -51,7 +51,7 @@ public class User extends Fragment {
             String name = c.getString(0);
             String age = c.getString(1);
             String med = c.getString(2);
-            Toast.makeText(getContext(),name+age+med,Toast.LENGTH_SHORT).show();
+
             NameEdt.setText(name);
             AgeEdt.setText(age);
             MedEdt.setText(med);

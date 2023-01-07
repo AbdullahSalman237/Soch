@@ -7,19 +7,21 @@
     <string name="age">عمر</string>
     <string name="medicationtime">ادویات کا وقت</string>
     <string name="todo">TODO</string>
-    <string name="quiz">QUIZ</string>
+    <string name="quiz">جائزہ</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="start_qiuz">Start Quiz</string>
     <string name="new_quiz">Start New Quiz</string>
+
     <string name="ans1">Button</string>
     <string name="ans2">Button</string>
     <string name="ans3">TextView</string>
     <string name="ans4">Button</string>
     <string name="ans5">Button</string>
     <string name="imageee">TODO</string>
-    <string name="quizless">Quiz</string>
-    <string name="god_s_eye">God\'s Eye</string>
+    <string name="home">تفصیلات</string>
+    <string name="quizless">جائزہ</string>
+    <string name="god_s_eye">پہچان</string>
     <string name="ansone">ans1</string>
     <string name="anstwo">ans2</string>
     <string name="ansthree">ans3</string>
@@ -32,7 +34,7 @@
     <string name="_2">2</string>
     <string name="_3">3</string>
     <string name="_4">4</string>
-    <string name="quizz">کوئز(Quiz)</string>
+    <string name="quizz">جائزہ</string>
     <string name="_0">0</string>
     <string name="score">سکور(score)</string>
     <string name="aik">۱</string>
@@ -41,8 +43,8 @@
     <string name="dkdkdk">TODO</string>
     <string name="dododo">doosrahai</string>
     <string name="kssd">۲</string>
-    <string name="shurur">کوئز شروع کریں؟</string>
-    <string name="cancel">کوئز منسوخ کریں</string>
+    <string name="shurur">جائزہ شروع کریں؟</string>
+    <string name="cancel">جائزہ منسوخ کریں</string>
     <string name="resume">جاری رکھیں</string>
 
     <string name="dssdsd">TODO</string>
@@ -59,7 +61,7 @@
     <string name="cameraa">TODO</string>
     <string name="cameraaa">TODO</string>
     <string name="click">کلک کریں</string>
-    <string name="godseye">گوڈ آیے</string>
+    <string name="godseye">پہچان </string>
     <string name="editttt">TODO</string>
     <string name="editagain">TODO</string>
     <string name="editagainn">TODO</string>
