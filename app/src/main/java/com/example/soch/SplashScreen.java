@@ -13,7 +13,7 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        getSupportActionBar().hide();
+        getSupportActionBar().hide(); // hiding the top bar
 
         Thread thread = new Thread() {
             public void run() {
@@ -22,12 +22,12 @@ public class SplashScreen extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    if(dbHandler.checkData()) //ager data present hai toh dashboard warna main
-                    {
+                    if(dbHandler.checkData()) //if database already as data
+                    {                           // then open dashboard
                         Intent intent = new Intent(getApplicationContext(), Dashboard.class);
                         startActivity(intent);
                     }
-                    else
+                    else  //otherwise open sign up to sign up the user
                     {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
