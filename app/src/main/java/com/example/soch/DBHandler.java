@@ -13,26 +13,13 @@ import java.io.ByteArrayOutputStream;
 
 public class DBHandler extends SQLiteOpenHelper {
 
-    // creating a constant variables for our database.
-    // below variable is for our database name.
     private static final String DB_NAME = "Soch";
-
-    // below int is our database version
     private static final int DB_VERSION = 1;
-
-    // below variable is for our table name.
     private static final String TABLE_NAME = "PatientDetails";
     private static final String TABLE_IMAGE = "ImageTable";
-
-    // below variable is for our course name column
     private static final String NAME_COL = "name";
-
-    // below variable id for our course duration column.
     private static final String AGE_COL = "age";
-
-    // below variable for our course description column.
     private static final String MED_COL = "med";
-
     private static final String IMAGE_ID = "image_id";
     private static final String option2 = "option2";
     private static final String option3 = "option3";
@@ -45,11 +32,9 @@ public class DBHandler extends SQLiteOpenHelper {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
-    // below method is for creating a database by running a sqlite query
+
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // on below line we are creating
-        // an sqlite query and we are
         String CREATE_IMAGE_TABLE = "CREATE TABLE " + TABLE_IMAGE + "("
 
                 + IMAGE_ID + " TEXT,"
@@ -59,41 +44,23 @@ public class DBHandler extends SQLiteOpenHelper {
                 + IMAGE_BITMAP + " TEXT )";
         db.execSQL(CREATE_IMAGE_TABLE);
 
-        // setting our column names
-        // along with their data types.
         String query = "CREATE TABLE " + TABLE_NAME + " ("
 
                 + NAME_COL + " TEXT,"
                 + AGE_COL + " TEXT,"
                 + MED_COL + " TEXT)";
 
-        // at last we are calling a exec sql
-        // method to execute above sql query
+
         db.execSQL(query);
     }
-    public void addNewCourse(String PersonName, String PersonAge, String PersonMed) {
+    public void addUser(String PersonName, String PersonAge, String PersonMed) {
 
-        // on below line we are creating a variable for
-        // our sqlite database and calling writable method
-        // as we are writing data in our database.
         SQLiteDatabase db = this.getWritableDatabase();
-
-        // on below line we are creating a
-        // variable for content values.
         ContentValues values = new ContentValues();
-
-        // on below line we are passing all values
-        // along with its key and value pair.
         values.put(NAME_COL, PersonName);
         values.put(AGE_COL, PersonAge);
         values.put(MED_COL, PersonMed);
-
-        // after adding all values we are passing
-        // content values to our table.
         db.insert(TABLE_NAME, null, values);
-
-        // at last we are closing our
-        // database after adding database.
         db.close();
     }
 
@@ -175,10 +142,19 @@ public class DBHandler extends SQLiteOpenHelper {
         return cursorCourses;
 
     }
-    public void OnUpgrade(){
+    public void OnUpgradeUser()
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
 
-        onUpgrade(this.getReadableDatabase(),1,1);
+        String query = "CREATE TABLE " + TABLE_NAME + " ("
 
+                + NAME_COL + " TEXT,"
+                + AGE_COL + " TEXT,"
+                + MED_COL + " TEXT)";
+
+
+        db.execSQL(query);
     }
 
     @Override

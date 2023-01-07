@@ -49,11 +49,11 @@ public class QuizSimulation extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_quiz_simulation, container, false);
+////////////////////////////////////////////////////////////////////////
         ((Dashboard) getActivity()).passVal(new Dashboard.FragmentCommunicator() {
             @Override
             public void passData(String name) {
                 x=name;
-
                 if (quizStarted)
                 {
                     Dialog dialog = new Dialog(getContext());
@@ -84,12 +84,8 @@ public class QuizSimulation extends Fragment {
                         }}
                     });
                     dialog.show();
-                    Toast.makeText(getContext(),"Yes",Toast.LENGTH_SHORT).show();
-
-                } else {
-
                 }
-
+///////////////////////////////////////////////////////////////////////////////////////////
             }
         });
         quizStarted=true;

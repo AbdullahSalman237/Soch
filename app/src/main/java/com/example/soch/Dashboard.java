@@ -99,7 +99,8 @@ public class Dashboard extends AppCompatActivity {
     {
         cancelQuiz=false;
     }
-    public void EditDetails()
+
+    public void EditDetails()////
     {
         Intent intent = new Intent(this,MainActivity.class);
 

@@ -24,13 +24,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        NameEdt = findViewById(R.id.patientname);
+        NameEdt = findViewById(R.id.patientname);//edittext
         AgeEdt = findViewById(R.id.patientage);
         MedEdt = findViewById(R.id.medicationTime);
 
         dbHandler = new DBHandler(MainActivity.this);
       //  dbHandler.OnUpgrade();
-        SubmitDetails = findViewById(R.id.signup);
+        SubmitDetails = findViewById(R.id.signup);//button
         Cursor c;
         c=dbHandler.RetrieveData();
         if(c.moveToFirst())
@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
                 String PersonAge = AgeEdt.getText().toString();
                 String PersonMed = MedEdt.getText().toString();
 
-                dbHandler.OnUpgrade();
+                dbHandler.OnUpgradeUser();
 
-                dbHandler.addNewCourse(PersonName, PersonAge, PersonMed);
+                dbHandler.addUser(PersonName, PersonAge, PersonMed);
             }
 
 
