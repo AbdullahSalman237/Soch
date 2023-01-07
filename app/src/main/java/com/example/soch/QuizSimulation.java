@@ -1,5 +1,8 @@
 package com.example.soch;
 
+import static android.os.SystemClock.sleep;
+
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.TaskInfo;
 import android.content.Context;
@@ -34,7 +37,8 @@ public class QuizSimulation extends Fragment {
     int score=0;
     private Boolean quizStarted=false;
     private int i =0;
-    private Button button1,button2,button3,button4,start_quiz,new_quiz,cancel_quiz,resume_quiz;
+    private TextView button1,button2,button3,button4;
+    private Button start_quiz,new_quiz,cancel_quiz,resume_quiz;
     private int objects[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
     private TextView textView1,textView2,textView3,textView4,textViewScore,result;
     private ImageView imageView;
@@ -105,10 +109,10 @@ public class QuizSimulation extends Fragment {
         });
         dialog.show();
 
-        button1 = (Button)view.findViewById(R.id.option1);
-        button2 = (Button)view.findViewById(R.id.option2);
-        button3 = (Button)view.findViewById(R.id.option3);
-        button4 = (Button)view.findViewById(R.id.option4);
+        button1 = (TextView) view.findViewById(R.id.option1);
+        button2 = (TextView) view.findViewById(R.id.option2);
+        button3 = (TextView) view.findViewById(R.id.option3);
+        button4 = (TextView) view.findViewById(R.id.option4);
         SetQuiz();
         GenerateQuiz();
 
@@ -162,18 +166,26 @@ public class QuizSimulation extends Fragment {
             }
         });
         button3.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
 
                 if (button3.getText().toString() == image[i].getImageId()) {
                     Toast.makeText(getContext(), "Correct", Toast.LENGTH_SHORT).show();
                     score++;
+                    button3.setBackgroundResource(R.color.correct_answer);
+                    sleep(2000);
                 }
-                else Toast.makeText(getContext(),"Wrong",Toast.LENGTH_SHORT).show();
-
+                else {
+                    Toast.makeText(getContext(), "it is Wrong", Toast.LENGTH_SHORT).show();
+                    button3.setBackgroundResource(R.color.wrong_answer);
+                    button3.setBackgroundColor(R.color.wrong_answer);
+                    sleep(2000);
+                }
                 Random random = new Random();
                 int x=random.nextInt(2);
                 i+=x+1;
+
                 EvaluteQuiz();
                 DisplayQuiz(image[i]);
 
