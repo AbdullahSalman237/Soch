@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -19,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
     //ActivityMainBinding binding;
     private Button SubmitDetails;
     private DBHandler dbHandler;
-    private EditText NameEdt, AgeEdt;
+    private EditText NameEdt;
+    private EditText AgeEdt;
     private TextView MedEdt;
     private int hour,minute;
     @Override
@@ -32,13 +34,19 @@ public class MainActivity extends AppCompatActivity {
         NameEdt = findViewById(R.id.patientname);// saving id in a variable
         AgeEdt = findViewById(R.id.patientage); //  for to manipulate the EditText placeholder
         MedEdt = findViewById(R.id.medicationTime);
+
+        //////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////     Age
+        /////////////////////////////////////////////////////////////////////////////
+//        String[] data = new String[]{"Berlin", "Moscow", "Tokyo", "Paris"};
+//        AgeEdt.setDisplayedValues(data);
+
         //////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////     Medicine Time
         /////////////////////////////////////////////////////////////////////////////
         MedEdt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
                     @Override

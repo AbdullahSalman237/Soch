@@ -17,7 +17,7 @@
         android:contentDescription="@string/todo"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.997"
+        app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -85,6 +85,7 @@
         tools:targetApi="m" />
 
     <!--        android:inputType="textPersonName"-->
+
     <EditText
 
         android:id="@+id/patientage"
