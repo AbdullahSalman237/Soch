@@ -94,7 +94,7 @@
         android:ems="10"
         android:hint="@string/age"
         android:importantForAutofill="no"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:minHeight="48dp"
         android:scaleX="@dimen/material_emphasis_high_type"
         android:textAlignment="center"

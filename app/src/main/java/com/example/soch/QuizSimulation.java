@@ -14,6 +14,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,10 +30,12 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Locale;
 import java.util.Random;
 
 public class QuizSimulation extends Fragment {
     View view;
+    private TextToSpeech mTTS;
     private DBHandler db;
     private int size=0;
     int score=0;
@@ -40,7 +43,7 @@ public class QuizSimulation extends Fragment {
     private int i =0;
     private TextView button1,button2,button3,button4;
     private Button start_quiz,new_quiz,cancel_quiz,resume_quiz,resultToHome,resultToGD,startToHome,startToGd;
-
+    public String allOptions="";
     private TextView textView1,textView2,textView3,textView4,textViewScore,result;
     private ImageView imageView;
 
@@ -49,6 +52,26 @@ public class QuizSimulation extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_quiz_simulation, container, false);
+        ///////////////////////////////
+        mTTS = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int result = mTTS.setLanguage(new Locale("ur"));
+                    if (result == TextToSpeech.LANG_MISSING_DATA
+                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("TTS", "Language not supported");
+                    } else {
+
+                    }
+                } else {
+                    Log.e("TTS", "Initialization failed");
+                }
+            }
+        });
+
+
+
 ////////////////////////////////////////////////////////////////////////
         ((Dashboard) getActivity()).passVal(new Dashboard.FragmentCommunicator() {
             @Override
@@ -125,7 +148,10 @@ public class QuizSimulation extends Fragment {
         start_quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                GenerateQuiz();
                 dialog.dismiss();
+
+
             }
         });
         dialog.show();
@@ -135,7 +161,7 @@ public class QuizSimulation extends Fragment {
         button3 = (TextView) view.findViewById(R.id.option3);
         button4 = (TextView) view.findViewById(R.id.option4);
         SetQuiz();
-        GenerateQuiz();
+
 
                 return view;
     }
@@ -381,28 +407,64 @@ public class QuizSimulation extends Fragment {
         textView3.setBackgroundResource(R.drawable.colouring);
         textView4.setBackgroundResource(R.drawable.colouring);
 
-        String option[]={image.getImageId(),image.getOption2(),image.getOption3(),image.getOption4()};
-        Random random= new Random();
-        int k= random.nextInt(4);
-        textView1.setText(option[k]);
-        k++;
-        if (k>=4)
-            k=0;
-        textView2.setText(option[k]);
-        k++;
-        if (k>=4)
-            k=0;
-        textView3.setText(option[k]);
-        k++;
-        if (k>=4)
-            k=0;
+        allOptions="";
         byte[] bytes=image.getImageByteArray();
         imageView=(ImageView)view.findViewById(R.id.imageView3);
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         imageView.setImageBitmap(bitmap);
+        String text = "یہ کیا ہے";
+        speak(1.3F,text);
+        String option[]={image.getImageId(),image.getOption2(),image.getOption3(),image.getOption4()};
+        Random random= new Random();
+        int k= random.nextInt(4);
+    //    Toast.makeText(getContext(),"option1",Toast.LENGTH_SHORT).show();
+//        speak(option[k]);
+        allOptions+=option[k];
+        allOptions+=" ";
+        textView1.setText(option[k]);
+        k++;
+        if (k>=4)
+            k=0;
+      //  Toast.makeText(getContext(),"option2",Toast.LENGTH_SHORT).show();
+  //      speak(option[k]);
+        allOptions+=option[k];
+        allOptions+=" ";
+        textView2.setText(option[k]);
+        k++;
+        if (k>=4)
+            k=0;
+//        Toast.makeText(getContext(),"option3",Toast.LENGTH_SHORT).show();
+//        speak(option[k]);
+        allOptions+=option[k];
+        allOptions+=" ";
+        textView3.setText(option[k]);
+        k++;
+        if (k>=4)
+            k=0;
+//        Toast.makeText(getContext(),"option4",Toast.LENGTH_SHORT).show();
+//        speak(option[k]);
+        allOptions+=option[k];
+        allOptions+=" ";
         textView4.setText(option[k]);
+        new Handler().postDelayed(new Runnable() {
+            public void run () {
+                speak(1F,allOptions);
+            }
+        }, 900L); //2 seconds delay
 
     }
 
+    private void speak(float speed,String text) {
+
+
+        float pitch = 1;
+
+        //float speed = 1.5F;
+
+//        mTTS.setPitch(pitch);
+        mTTS.setSpeechRate(speed);
+
+        mTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    }
 
 }
