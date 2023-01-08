@@ -18,15 +18,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.signup);
+        super.onCreate(savedInstanceState);// when the intent is called
+        setContentView(R.layout.signup);  //  signup fragment is shown to user
         if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
+            getSupportActionBar().hide();  //hiding the top action bar
         }
 
 
-        NameEdt = findViewById(R.id.patientname);//edittext
-        AgeEdt = findViewById(R.id.patientage);
+        NameEdt = findViewById(R.id.patientname);// saving id in a variable
+        AgeEdt = findViewById(R.id.patientage); //  for to manipulate the EditText placeholder
         MedEdt = findViewById(R.id.medicationTime);
 
         dbHandler = new DBHandler(MainActivity.this);
@@ -40,12 +40,11 @@ public class MainActivity extends AppCompatActivity {
             String age = c.getString(1);
             String med = c.getString(2);
             NameEdt.setText(name);
-            AgeEdt.setText(age); //yahan data set ho raha hai
-            MedEdt.setText(med);
+            AgeEdt.setText(age); //setting data at EditText placeholder
+            MedEdt.setText(med); //from the database
         }
-
+        // when the submit button is clicked a function is called
         SubmitDetails.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
 
@@ -64,19 +63,21 @@ public class MainActivity extends AppCompatActivity {
     }
     public void fun()
     {
-
-                String PersonName = NameEdt.getText().toString();
-                String PersonAge = AgeEdt.getText().toString();
-                String PersonMed = MedEdt.getText().toString();
-                if(PersonName.matches("") ||PersonAge.matches("")
-                || PersonMed.matches("")){
-                    Toast.makeText(this, "fill in the blanks", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                signup();
-                dbHandler.OnUpgradeUser();
-                dbHandler.addUser(PersonName, PersonAge, PersonMed);
-                //yahan database mein write ho raha hai
+        // saving string value of EditText placholder in variables
+        String PersonName = NameEdt.getText().toString();
+        String PersonAge = AgeEdt.getText().toString();
+        String PersonMed = MedEdt.getText().toString();
+        // only continue if the information is fulfilled
+        if(PersonName.matches("") ||PersonAge.matches("")
+        || PersonMed.matches("")){
+            Toast.makeText(this, "fill in the blanks", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        // signup function opens dashboard
+        signup();
+        dbHandler.OnUpgradeUser(); // delete any previous data
+        dbHandler.addUser(PersonName, PersonAge, PersonMed);// insert in db with string varibles
+        //yahan database mein write ho raha hai
     }
 
     }
