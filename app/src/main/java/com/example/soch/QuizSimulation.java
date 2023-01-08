@@ -38,6 +38,7 @@ public class QuizSimulation extends Fragment {
     private TextToSpeech mTTS;
     private DBHandler db;
     private int size=0;
+    private int totalImages=0;
     int score=0;
     private Boolean quizStarted=false;
     private int i =0;
@@ -168,7 +169,7 @@ public class QuizSimulation extends Fragment {
     public void GenerateQuiz(){
         Image[] image = db.getImage();
         Random random = new Random();
-        int totalImages= image.length;
+        totalImages= image.length;
         int iterator= totalImages/10;
 
         i=random.nextInt(totalImages);
@@ -193,13 +194,14 @@ public class QuizSimulation extends Fragment {
                 Random random = new Random();
                 int x=random.nextInt(iterator);
                 i+=x+1;
-                EvaluteQuiz();
-                new Handler().postDelayed(new Runnable() {
-                    public void run () {
-                        DisplayQuiz(image[i]);
-                    }
-                }, 200L); //2 seconds delay
-
+                if(!EvaluteQuiz())
+                {
+                    new Handler().postDelayed(new Runnable() {
+                        public void run() {
+                            DisplayQuiz(image[i]);
+                        }
+                    }, 200L); //2 seconds delay
+                }
 
             }
         });
@@ -219,12 +221,14 @@ public class QuizSimulation extends Fragment {
                 Random random = new Random();
                 int x=random.nextInt(iterator);
                 i+=x+1;
-                EvaluteQuiz();
-                new Handler().postDelayed(new Runnable() {
-                    public void run () {
-                        DisplayQuiz(image[i]);
-                    }
-                }, 200L); //2 seconds delay
+                if(!EvaluteQuiz())
+                {
+                    new Handler().postDelayed(new Runnable() {
+                        public void run() {
+                            DisplayQuiz(image[i]);
+                        }
+                    }, 200L); //2 seconds delay
+                }
 
 
             }
@@ -249,13 +253,14 @@ public class QuizSimulation extends Fragment {
                 int x=random.nextInt(iterator);
                 i+=x+1;
 
-                EvaluteQuiz();
-                new Handler().postDelayed(new Runnable() {
-                    public void run () {
-                        DisplayQuiz(image[i]);
-                    }
-                }, 200L); //2 seconds delay
-
+                if(!EvaluteQuiz())
+                {
+                    new Handler().postDelayed(new Runnable() {
+                        public void run() {
+                            DisplayQuiz(image[i]);
+                        }
+                    }, 200L); //2 seconds delay
+                }
 
             }
         });
@@ -274,13 +279,14 @@ public class QuizSimulation extends Fragment {
                 Random random = new Random();
                 int x=random.nextInt(iterator);
                 i+=x+1;
-                EvaluteQuiz();
-                new Handler().postDelayed(new Runnable() {
-                    public void run () {
-                        DisplayQuiz(image[i]);
-                    }
-                }, 200L); //2 seconds delay
-
+                if(!EvaluteQuiz())
+                {
+                    new Handler().postDelayed(new Runnable() {
+                        public void run() {
+                            DisplayQuiz(image[i]);
+                        }
+                    }, 200L); //2 seconds delay
+                }
 
             }
         });
@@ -340,7 +346,7 @@ public class QuizSimulation extends Fragment {
     {
         textViewScore.setText(String.valueOf(score));
         size++;
-        if(i>=20)
+        if(i>=totalImages)
             i=0;
         if (size>=10)
         {
@@ -389,7 +395,11 @@ public class QuizSimulation extends Fragment {
             });
             dialog2.show();
 
+
+
             return true;
+        }else {
+
         }
         return false;
     }
@@ -413,7 +423,7 @@ public class QuizSimulation extends Fragment {
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         imageView.setImageBitmap(bitmap);
         String text = "یہ کیا ہے";
-        speak(1.3F,text);
+        allOptions +=text+"  ";
         String option[]={image.getImageId(),image.getOption2(),image.getOption3(),image.getOption4()};
         Random random= new Random();
         int k= random.nextInt(4);
@@ -446,22 +456,19 @@ public class QuizSimulation extends Fragment {
         allOptions+=option[k];
         allOptions+=" ";
         textView4.setText(option[k]);
-        new Handler().postDelayed(new Runnable() {
-            public void run () {
-                speak(1F,allOptions);
-            }
-        }, 900L); //2 seconds delay
-
+        if (size<10) {
+            speak(1F, allOptions);
+        }
     }
 
     private void speak(float speed,String text) {
 
 
-        float pitch = 1;
+        float pitch = 1.11F;
 
         //float speed = 1.5F;
 
-//        mTTS.setPitch(pitch);
+        mTTS.setPitch(pitch);
         mTTS.setSpeechRate(speed);
 
         mTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null);
