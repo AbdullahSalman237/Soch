@@ -57,21 +57,26 @@ public class QuizSimulation extends Fragment {
                 if (quizStarted)
                 {
                     Dialog dialog = new Dialog(getContext());
+                    //user is shown a cancellation dialogbox
                     dialog.setContentView(R.layout.cancel_quiz);
                     dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     dialog.setCancelable(false);
+                    //2 buttons in cancelquiz.xml
                     cancel_quiz=dialog.findViewById(R.id.cancel_quiz);
                     resume_quiz=dialog.findViewById(R.id.resume_quiz);
+                    // if user does not want to cancel the quiz continues
                     resume_quiz.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             dialog.dismiss();
                         }
                     });
+                    //if user decides to cancel
                     cancel_quiz.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             dialog.dismiss();
+                            // user is asked fragment he wants to go on
                             if (name=="home") {
                                 ((Dashboard) getActivity()).QuizInProgress=false;
                                 ((Dashboard) getActivity()).changeInInterface(new User());

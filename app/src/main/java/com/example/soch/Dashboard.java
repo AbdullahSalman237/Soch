@@ -26,9 +26,9 @@ public class Dashboard extends AppCompatActivity {
 
         setContentView(R.layout.dashboard);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
+            getSupportActionBar().hide(); // hiding the topbar
         }
-
+        // BottomNav is kept on
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setOnNavigationItemSelectedListener(navListner);
 
@@ -53,14 +53,12 @@ public class Dashboard extends AppCompatActivity {
                     case R.id.godseye:
                         x="godseye";
                         break;
-
-
                 }
-                fragmentCommunicator.passData(x);
-            }
+                fragmentCommunicator.passData(x); //passing data to QuizSimulation.passData
+            }                               //where user verifies to cancel or not
 
-            if(QuizInProgress==false)
-            {
+            if(QuizInProgress==false) // if the quiz in not in progress
+            {                         // move to the selected frag
             switch (item.getItemId()) {
                 case R.id.home:
                     selectedFragment = new User();
@@ -75,23 +73,24 @@ public class Dashboard extends AppCompatActivity {
                     QuizInProgress=false;
                     break;
             }
-                changeInInterface(selectedFragment);
+                changeInInterface(selectedFragment);// change in fragment
             }
 
             return true;
 
         }
     };
+    // change to interface that is selected
     public void changeInInterface(Fragment fragment)
     {
         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, fragment).commit();
-
     }
+    // communicating the QuizSimulation fragment and passing data to its function
     public interface FragmentCommunicator {
 
         public void passData(String name);
     }
-
+    // providing an interface thru which different classes's functions are called
     public void passVal(FragmentCommunicator fragmentCommunicator) {
         this.fragmentCommunicator = fragmentCommunicator;
     }
