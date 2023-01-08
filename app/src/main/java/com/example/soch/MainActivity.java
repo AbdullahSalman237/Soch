@@ -99,11 +99,21 @@ public class MainActivity extends AppCompatActivity {
         String PersonAge = AgeEdt.getText().toString();
         String PersonMed = MedEdt.getText().toString();
         // only continue if the information is fulfilled
+
+
+
         if (PersonName.matches("") || PersonAge.matches("")
                 || PersonMed.matches("")) {
             Toast.makeText(this, "براۓ مہربانی خالی جگہ پر کریں", Toast.LENGTH_SHORT).show();
             return;
         }
+        if (PersonName.matches("(?s).*[\\u0626-\\u06D2].*")||PersonName.matches("(?s).*[A-Za-z].*"))
+        {;
+        }else {
+            Toast.makeText(MainActivity.this,"براۓ مہربانی نام اردو یا انگریزی میں درج کریں",Toast.LENGTH_SHORT).show();
+        return;
+        }
+
         if (Integer.valueOf(PersonAge)<30 || Integer.valueOf(PersonAge)>100 ) {
             Toast.makeText(this, "براۓ مہربانی درست عمر کا اندراج کریں", Toast.LENGTH_SHORT).show();
             return;
