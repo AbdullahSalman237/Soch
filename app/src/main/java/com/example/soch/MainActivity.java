@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         dbHandler = new DBHandler(MainActivity.this);
-      //  dbHandler.OnUpgrade();
+        //  dbHandler.OnUpgrade();
         SubmitDetails = findViewById(R.id.signup);//button
         Cursor c;
         c=dbHandler.RetrieveData(); //cursor is retrieving the data
@@ -104,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "براۓ مہربانی خالی جگہ پر کریں", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (PersonAge.length() > 2 || PersonAge == "0" || PersonAge == "00") {
+        if (Integer.valueOf(PersonAge)<30 || Integer.valueOf(PersonAge)>100 ) {
             Toast.makeText(this, "براۓ مہربانی درست عمر کا اندراج کریں", Toast.LENGTH_SHORT).show();
-        return;
+            return;
         }
         // signup function opens dashboard
         signup();
@@ -115,5 +115,4 @@ public class MainActivity extends AppCompatActivity {
         //yahan database mein write ho raha hai
     }
 
-    }
-
+}

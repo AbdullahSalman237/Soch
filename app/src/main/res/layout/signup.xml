@@ -84,7 +84,9 @@
         tools:ignore="TextContrastCheck"
         tools:targetApi="m" />
 
+    <!--        android:inputType="textPersonName"-->
     <EditText
+
         android:id="@+id/patientage"
         android:layout_width="397dp"
         android:layout_height="60dp"
@@ -105,6 +107,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/patientname"
         tools:targetApi="m" />
+
 
     <Button
         android:id="@+id/signup"
