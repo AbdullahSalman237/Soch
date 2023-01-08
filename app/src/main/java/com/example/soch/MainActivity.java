@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         dbHandler = new DBHandler(MainActivity.this);
-      //  dbHandler.OnUpgrade();
+        //  dbHandler.OnUpgrade();
         SubmitDetails = findViewById(R.id.signup);//button
         Cursor c;
         c=dbHandler.RetrieveData(); //cursor is retrieving the data
@@ -99,14 +99,24 @@ public class MainActivity extends AppCompatActivity {
         String PersonAge = AgeEdt.getText().toString();
         String PersonMed = MedEdt.getText().toString();
         // only continue if the information is fulfilled
+
+
+
         if (PersonName.matches("") || PersonAge.matches("")
                 || PersonMed.matches("")) {
             Toast.makeText(this, "براۓ مہربانی خالی جگہ پر کریں", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (PersonAge.length() > 2 || PersonAge == "0" || PersonAge == "00") {
-            Toast.makeText(this, "براۓ مہربانی درست عمر کا اندراج کریں", Toast.LENGTH_SHORT).show();
+        if (PersonName.matches("(?s).*[\\u0626-\\u06D2].*")||PersonName.matches("(?s).*[A-Za-z].*"))
+        {;
+        }else {
+            Toast.makeText(MainActivity.this,"براۓ مہربانی نام اردو یا انگریزی میں درج کریں",Toast.LENGTH_SHORT).show();
         return;
+        }
+
+        if (Integer.valueOf(PersonAge)<30 || Integer.valueOf(PersonAge)>100 ) {
+            Toast.makeText(this, "براۓ مہربانی درست عمر کا اندراج کریں", Toast.LENGTH_SHORT).show();
+            return;
         }
         // signup function opens dashboard
         signup();
@@ -115,5 +125,4 @@ public class MainActivity extends AppCompatActivity {
         //yahan database mein write ho raha hai
     }
 
-    }
-
+}
