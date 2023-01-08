@@ -35,7 +35,7 @@ import java.util.Random;
 
 public class QuizSimulation extends Fragment {
     View view;
-    private TextToSpeech mTTS;
+
     private DBHandler db;
     private int size=0;
     private int totalImages=0;
@@ -53,27 +53,10 @@ public class QuizSimulation extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_quiz_simulation, container, false);
-        ///////////////////////////////
-        mTTS = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status == TextToSpeech.SUCCESS) {
-                    int result = mTTS.setLanguage(new Locale("ur"));
-                    if (result == TextToSpeech.LANG_MISSING_DATA
-                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                        Log.e("TTS", "Language not supported");
-                    } else {
-
-                    }
-                } else {
-                    Log.e("TTS", "Initialization failed");
-                }
-            }
-        });
-
-
 
 ////////////////////////////////////////////////////////////////////////
+        //Cancel Quiz Dialog Box
+
         ((Dashboard) getActivity()).passVal(new Dashboard.FragmentCommunicator() {
             @Override
             public void passData(String name) {
@@ -417,7 +400,6 @@ public class QuizSimulation extends Fragment {
     private  void DisplayQuiz(Image image)
     {
 
-
         textView1=(TextView) view.findViewById(R.id.option1);
         textView2=(TextView) view.findViewById(R.id.option2);
         textView3=(TextView) view.findViewById(R.id.option3);
@@ -437,51 +419,29 @@ public class QuizSimulation extends Fragment {
         String option[]={image.getImageId(),image.getOption2(),image.getOption3(),image.getOption4()};
         Random random= new Random();
         int k= random.nextInt(4);
-    //    Toast.makeText(getContext(),"option1",Toast.LENGTH_SHORT).show();
-//        speak(option[k]);
         allOptions+=option[k];
         allOptions+=" ";
         textView1.setText(option[k]);
         k++;
         if (k>=4)
             k=0;
-      //  Toast.makeText(getContext(),"option2",Toast.LENGTH_SHORT).show();
-  //      speak(option[k]);
         allOptions+=option[k];
         allOptions+=" ";
         textView2.setText(option[k]);
         k++;
         if (k>=4)
             k=0;
-//        Toast.makeText(getContext(),"option3",Toast.LENGTH_SHORT).show();
-//        speak(option[k]);
         allOptions+=option[k];
         allOptions+=" ";
         textView3.setText(option[k]);
         k++;
         if (k>=4)
             k=0;
-//        Toast.makeText(getContext(),"option4",Toast.LENGTH_SHORT).show();
-//        speak(option[k]);
         allOptions+=option[k];
         allOptions+=" ";
         textView4.setText(option[k]);
-        if (size<10) {
-            speak(1F, allOptions);
-        }
+
     }
 
-    private void speak(float speed,String text) {
-
-
-        float pitch = 1.11F;
-
-        //float speed = 1.5F;
-
-        mTTS.setPitch(pitch);
-        mTTS.setSpeechRate(speed);
-
-        mTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-    }
 
 }
