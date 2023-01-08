@@ -103,7 +103,10 @@ public class QuizSimulation extends Fragment {
 
                         }}
                     });
+                    if(name!="quiz"){
                     dialog.show();
+                    }
+
                 }
 ///////////////////////////////////////////////////////////////////////////////////////////
             }
