@@ -34,7 +34,7 @@
         android:text="@string/name"
         android:textSize="25sp"
         android:textColor="@color/black"
-        android:textStyle="bold"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.744"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,9 +49,9 @@
         android:text="@string/medicationtime"
         android:textColor="@color/black"
         android:textSize="25sp"
-        android:textStyle="bold"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintHorizontal_bias="0.744"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/patientage" />
 
@@ -64,9 +64,9 @@
         android:text="@string/age"
         android:textColor="@color/black"
         android:textSize="25sp"
-        android:textStyle="bold"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.788"
+        app:layout_constraintHorizontal_bias="0.744"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/patientname" />

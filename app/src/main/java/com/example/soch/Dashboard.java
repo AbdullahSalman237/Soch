@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Dashboard extends AppCompatActivity {
-    public Boolean cancelQuiz=false;
+    public Boolean QuizInProgress=false;
     FragmentCommunicator fragmentCommunicator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +26,9 @@ public class Dashboard extends AppCompatActivity {
 
         setContentView(R.layout.dashboard);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
+            getSupportActionBar().hide(); // hiding the topbar
         }
-
+        // BottomNav is kept on
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setOnNavigationItemSelectedListener(navListner);
 
@@ -39,7 +39,7 @@ public class Dashboard extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener navListner = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            if (cancelQuiz == true) //check if quiz chal raha ya nahin quiz chal raha toh true hogaya
+            if (QuizInProgress == true) //check if quiz chal raha ya nahin quiz chal raha toh true hogaya
             {
 
                 String x="";
@@ -53,54 +53,49 @@ public class Dashboard extends AppCompatActivity {
                     case R.id.godseye:
                         x="godseye";
                         break;
-
-
                 }
-                fragmentCommunicator.passData(x);
-            }
+                fragmentCommunicator.passData(x); //passing data to QuizSimulation.passData
+            }                               //where user verifies to cancel or not
 
-            if(cancelQuiz==false)
-            {
+            if(QuizInProgress==false) // if the quiz in not in progress
+            {                         // move to the selected frag
             switch (item.getItemId()) {
                 case R.id.home:
                     selectedFragment = new User();
-                    cancelQuiz=false;
+                    QuizInProgress=false;
                     break;
                 case R.id.quiz:
                     selectedFragment = new QuizSimulation();
-                    cancelQuiz=true;
+                    QuizInProgress=true;
                     break;
                 case R.id.godseye:
                     selectedFragment = new ObjectRecognizer();
-                    cancelQuiz=false;
+                    QuizInProgress=false;
                     break;
             }
-                changeInInterface(selectedFragment);
+                changeInInterface(selectedFragment);// change in fragment
             }
 
             return true;
 
         }
     };
+    // change to interface that is selected
     public void changeInInterface(Fragment fragment)
     {
         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, fragment).commit();
-
     }
+    // communicating the QuizSimulation fragment and passing data to its function
     public interface FragmentCommunicator {
 
         public void passData(String name);
     }
-
+    // providing an interface thru which different classes's functions are called
     public void passVal(FragmentCommunicator fragmentCommunicator) {
         this.fragmentCommunicator = fragmentCommunicator;
     }
-    public void SetCancelQuiz()
-    {
-        cancelQuiz=false;
-    }
 
-    public void EditDetails()////
+    public void EditDetails()////Moving back to Main Activity (Sign Up) for updation
     {
         Intent intent = new Intent(this,MainActivity.class);
 
