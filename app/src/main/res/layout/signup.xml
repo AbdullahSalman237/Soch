@@ -61,7 +61,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/medicationTime"
         android:layout_width="397dp"
         android:layout_height="60dp"
@@ -70,8 +70,8 @@
         android:drawableTint="#0E0E0E"
         android:ems="10"
         android:hint="@string/medicationtime"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
+
+        android:gravity="center"
         android:minHeight="48dp"
         android:scaleX="@dimen/material_emphasis_high_type"
         android:textAlignment="center"

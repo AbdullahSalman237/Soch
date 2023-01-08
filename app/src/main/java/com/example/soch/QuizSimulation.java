@@ -102,12 +102,22 @@ public class QuizSimulation extends Fragment {
                             dialog.dismiss();
                             // user is asked fragment he wants to go on
                             if (name=="home") {
-                                ((Dashboard) getActivity()).QuizInProgress=false;
-                                ((Dashboard) getActivity()).changeInInterface(new User());
+                                new Handler().postDelayed(new Runnable() {
+                                    public void run() {
+                                        ((Dashboard) getActivity()).QuizInProgress=false;
+                                        ((Dashboard) getActivity()).changeInInterface(new User());
+                                    }
+                                }, 800L); //2 seconds delay
+
                             }
                             else if (name=="godseye"){
-                                ((Dashboard) getActivity()).QuizInProgress=false;
-                                ((Dashboard) getActivity()).changeInInterface(new ObjectRecognizer());
+                                new Handler().postDelayed(new Runnable() {
+                                    public void run() {
+                                        ((Dashboard) getActivity()).QuizInProgress=false;
+                                        ((Dashboard) getActivity()).changeInInterface(new ObjectRecognizer());
+                                    }
+                                }, 800L); //2 seconds delay
+
                         }}
                     });
                     dialog.show();
