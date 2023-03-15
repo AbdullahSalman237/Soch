@@ -1,69 +1,135 @@
 package com.example.soch;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.util.Calendar;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     //ActivityMainBinding binding;
-    private Button SubmitDetails;
+    private Button SubmitDetails, resume, btn, timepicker;
     private DBHandler dbHandler;
     private EditText NameEdt;
     private EditText AgeEdt;
     private TextView MedEdt;
-    private int hour,minute;
+    private int hour, minute;
+    private LinearLayout parentLayout;
+
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);// when the intent is called
         setContentView(R.layout.signup);  //  signup fragment is shown to user
+        Dialog dialog = new Dialog(this);
+        //user is shown a cancellation dialogbox
+        dialog.setContentView(R.layout.user_instructions);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        resume = dialog.findViewById(R.id.button3);
+
+        resume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
+        //instructions khatam now give details
+
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();  //hiding the top action bar
         }
         NameEdt = findViewById(R.id.patientname);// saving id in a variable
         AgeEdt = findViewById(R.id.patientage); //  for to manipulate the EditText placeholder
         MedEdt = findViewById(R.id.medicationTime);
+        btn = findViewById(R.id.button2);
+        parentLayout = findViewById(R.id.parent_layout);
+        timepicker = findViewById(R.id.button4);
 
-        //////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////     Age
-        /////////////////////////////////////////////////////////////////////////////
-//        String[] data = new String[]{"Berlin", "Moscow", "Tokyo", "Paris"};
-//        AgeEdt.setDisplayedValues(data);
-
-        //////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////     Medicine Time
-        /////////////////////////////////////////////////////////////////////////////
-        MedEdt.setOnClickListener(new View.OnClickListener() {
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                // Create a new EditText field
+                EditText editText = new EditText(MainActivity.this);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                editText.setLayoutParams(layoutParams);
 
-                TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                        hour = i;
-                        minute=i1;
-                        MedEdt.setText(String.format(Locale.getDefault(),"%02d:%02d",hour,minute));
-
-                    }
-                };
-                TimePickerDialog timePickerDialog=new TimePickerDialog(MainActivity.this,onTimeSetListener,hour,minute,true);
-                timePickerDialog.show();
-
-
+                // Add the EditText field to the parent layout
+                parentLayout.addView(editText);
             }
 
         });
+
+        timepicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get the current time as the default time for the TimePickerDialog
+                Calendar calendar = Calendar.getInstance();
+                int hourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
+                minute = calendar.get(Calendar.MINUTE);
+
+                // Create a new TimePickerDialog
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        MainActivity.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                // Update the TextView with the selected time
+                                MedEdt.setText(hourOfDay + ":" + minute);
+                            }
+                        },
+                        hourOfDay,
+                        minute,
+                        false
+                );
+
+                // Display the TimePickerDialog
+                timePickerDialog.show();
+            }
+        });
+
+        // Create a Handler to update the time ticker every second
+        final Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                // Get the current time
+                Calendar calendar = Calendar.getInstance();
+                int hourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
+                int minute = calendar.get(Calendar.MINUTE);
+
+                // Update the TextView with the current time
+                MedEdt.setText(hourOfDay + ":" + minute);
+
+                // Post the Runnable to run again after 1 second
+                handler.postDelayed(this, 1000);
+            }
+        });
+
 /////////////////////////////////////////////
 
         /////////////////////////////////////

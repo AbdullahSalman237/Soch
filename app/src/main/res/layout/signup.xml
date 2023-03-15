@@ -61,30 +61,53 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--        android:inputType="textPersonName"-->
+
     <TextView
         android:id="@+id/medicationTime"
-        android:layout_width="397dp"
-        android:layout_height="60dp"
+        android:layout_width="211dp"
+        android:layout_height="61dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/colouring"
-        android:drawableTint="#0E0E0E"
         android:ems="10"
-        android:hint="@string/medicationtime"
-
         android:gravity="center"
+
+        android:hint="@string/medicationtime"
         android:minHeight="48dp"
         android:scaleX="@dimen/material_emphasis_high_type"
         android:textAlignment="center"
         android:textColorHint="#090909"
         android:textSize="25sp"
+        app:drawableTint="#0E0E0E"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.569"
+        app:layout_constraintHorizontal_bias="0.805"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/patientage"
         tools:ignore="TextContrastCheck"
         tools:targetApi="m" />
 
-    <!--        android:inputType="textPersonName"-->
+    <TextView
+        android:id="@+id/medicationTime2"
+        android:layout_width="211dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/colouring"
+        android:ems="10"
+        android:gravity="center"
+
+        android:hint="@string/medicationtime"
+        android:minHeight="48dp"
+        android:scaleX="@dimen/material_emphasis_high_type"
+        android:textAlignment="center"
+        android:textColorHint="#090909"
+        android:textSize="25sp"
+        app:drawableTint="#0E0E0E"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/patientage"
+        tools:ignore="TextContrastCheck"
+        tools:targetApi="m" />
 
     <EditText
 
@@ -114,7 +137,7 @@
         android:id="@+id/signup"
         android:layout_width="262dp"
         android:layout_height="69dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/round"
         android:onClick="signup"
         android:text="@string/darjkarein"
@@ -123,9 +146,46 @@
         app:iconPadding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="117dp"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/signup"
+        app:layout_constraintEnd_toStartOf="@+id/medicationTime"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/parent_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/button2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="29dp"
+        android:text="Button"
+        app:layout_constraintEnd_toStartOf="@+id/medicationTime"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

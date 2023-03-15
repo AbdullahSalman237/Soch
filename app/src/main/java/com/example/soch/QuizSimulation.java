@@ -2,6 +2,10 @@ package com.example.soch;
 
 import static android.os.SystemClock.sleep;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.TaskInfo;
@@ -11,6 +15,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
@@ -26,10 +31,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
@@ -43,7 +50,7 @@ public class QuizSimulation extends Fragment {
     private Boolean quizStarted=false;
     private int i =0;
     private TextView button1,button2,button3,button4;
-    private Button start_quiz,new_quiz,cancel_quiz,resume_quiz,resultToHome,resultToGD,startToHome,startToGd;
+    private Button start_quiz,new_quiz,cancel_quiz,resume_quiz,resultToHome,resultToGD,startToHome,startToGd,c,r;
     public String allOptions="";
     private TextView textView1,textView2,textView3,textView4,textViewScore,result;
     private ImageView imageView;
@@ -54,6 +61,21 @@ public class QuizSimulation extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_quiz_simulation, container, false);
 
+        //first show the instructions
+        Dialog dialog = new Dialog(getContext());
+        //user is shown a cancellation dialogbox
+        dialog.setContentView(R.layout.quiz_instructions);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+
+        r=dialog.findViewById(R.id.doit);
+        r.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
 ////////////////////////////////////////////////////////////////////////
         //Cancel Quiz Dialog Box
 
@@ -63,6 +85,7 @@ public class QuizSimulation extends Fragment {
                 x=name;
                 if (quizStarted)
                 {
+
                     Dialog dialog = new Dialog(getContext());
                     //user is shown a cancellation dialogbox
                     dialog.setContentView(R.layout.cancel_quiz);
@@ -115,13 +138,13 @@ public class QuizSimulation extends Fragment {
         db= new DBHandler(getContext());
         textViewScore=(TextView)view.findViewById(R.id.score);
 
-        Dialog dialog = new Dialog(getContext());
-        dialog.setContentView(R.layout.start_quiz);
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.setCancelable(false);
-        startToHome=dialog.findViewById(R.id.home);
-        startToGd=dialog.findViewById(R.id.godseye);
-        start_quiz=dialog.findViewById(R.id.start_quiz);
+        Dialog dialog2 = new Dialog(getContext());
+        dialog2.setContentView(R.layout.start_quiz);
+        dialog2.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog2.setCancelable(false);
+        startToHome=dialog2.findViewById(R.id.home);
+        startToGd=dialog2.findViewById(R.id.godseye);
+        start_quiz=dialog2.findViewById(R.id.start_quiz);
 
         startToGd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,7 +152,7 @@ public class QuizSimulation extends Fragment {
             {
                 ((Dashboard) getActivity()).QuizInProgress=false;
                 ((Dashboard) getActivity()).changeInInterface(new ObjectRecognizer());
-                dialog.dismiss();
+                dialog2.dismiss();
             }
         });
         startToHome.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +161,7 @@ public class QuizSimulation extends Fragment {
             {
                 ((Dashboard) getActivity()).QuizInProgress=false;
                 ((Dashboard) getActivity()).changeInInterface(new User());
-                dialog.dismiss();
+                dialog2.dismiss();
             }
         });
 
@@ -146,12 +169,12 @@ public class QuizSimulation extends Fragment {
             @Override
             public void onClick(View v) {
                 GenerateQuiz();
-                dialog.dismiss();
+                dialog2.dismiss();
 
 
             }
         });
-        dialog.show();
+        dialog2.show();
 
         button1 = (TextView) view.findViewById(R.id.option1);
         button2 = (TextView) view.findViewById(R.id.option2);
@@ -175,6 +198,7 @@ public class QuizSimulation extends Fragment {
         DisplayQuiz(image[i]);
 
         button1.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
 
@@ -202,6 +226,7 @@ public class QuizSimulation extends Fragment {
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
 
@@ -230,6 +255,7 @@ public class QuizSimulation extends Fragment {
             }
         });
         button3.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
@@ -261,6 +287,7 @@ public class QuizSimulation extends Fragment {
             }
         });
         button4.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
 
@@ -338,6 +365,7 @@ public class QuizSimulation extends Fragment {
         dbDrawable=getResources().getDrawable(R.drawable.glass);
         db.insetImage(dbDrawable, "گلاس","چمچ","پلیٹ","کانٹا");//20
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public boolean EvaluteQuiz()
     {
         textViewScore.setText(String.valueOf(score));
@@ -350,7 +378,14 @@ public class QuizSimulation extends Fragment {
             dialog2.setContentView(R.layout.result);
             dialog2.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             dialog2.setCancelable(false);
+            LocalDate currentDate = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String formattedDate = currentDate.format(formatter);
             result=dialog2.findViewById(R.id.score_of);
+            String results = result.toString();
+            DBHandler dbhelper = new DBHandler(getContext());
+            dbhelper.addScore(formattedDate,results);
+
             new_quiz=dialog2.findViewById(R.id.new_quiz);
             result.setText(String.valueOf(score));
             resultToGD=dialog2.findViewById(R.id.godseye);

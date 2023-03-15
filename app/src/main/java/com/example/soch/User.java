@@ -1,10 +1,13 @@
 package com.example.soch;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +22,7 @@ public class User extends Fragment {
     private DBHandler dbHandler;
     ImageView updateData;
     private TextView NameEdt, AgeEdt, MedEdt;
+    private Button btn,resume;
     @Nullable
     @Override
 
@@ -35,6 +39,14 @@ public class User extends Fragment {
         AgeEdt = (TextView) view.findViewById(R.id.patientage);
         MedEdt = (TextView) view.findViewById(R.id.medicationTime);
         updateData=(ImageView) view.findViewById(R.id.updateData);
+        btn=(Button)view.findViewById(R.id.button6);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),Report.class);
+                startActivity(intent);
+            }
+        });
 
         updateData.setOnClickListener(new View.OnClickListener()
         {

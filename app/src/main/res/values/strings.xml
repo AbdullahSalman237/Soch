@@ -66,5 +66,19 @@
     <string name="editagain">TODO</string>
     <string name="editagainn">TODO</string>
     <string name="testingbutton">Button</string>
+    <string name="inst">تفصیلات</string>
+    <string name="stuffff">- آپکے سامنے کچھ تصویر ہیں گیں اپنے انکو دے گئی چار آپشنز میں سے ایک پر کلک کردینا ہے - کل تعداد سوالات کی ١٠ ہو گی - سوالات کے اختتام پر اپکا سکور آپکو بتایا جی گا - سہی جواب پر ہر رنگ کا دبا بنجائیگا - گلت جواب پر لال دابّ بنجائیگا - گلت جواب پر ایک نمبر کٹ جائیگا - سہی جواب پر ایک نمبر بڑھ جی گا - کل نمبر بھی ١٠ ہوں گے</string>
+    <string name="in">تفصیلات</string>
+    <string name="nope">Nope</string>
+    <string name="okay">Okay</string>
+    <string name="skjnd">یہاں آپ کی تفصیلات دستیاب ہیں: - یہ صفحہ آپ کا نام، عمر، دوا کا وقت دکھاتا ہے۔ - آپ کئی بار دوائیاں شامل کرسکتے ہیں۔ - وقت کے لئے ایک گھڑی ظاہر ہوگی۔ - اس کے بعد آپ اپنی تفصیلات محفوظ کر سکتے ہیں۔ - یہ تفصیلات ہمارے ڈیٹا بیس میں محفوظ ہو جائیں گی۔</string>
+    <string name="fkkff">یہاں ہدایات ہیں: - کیمرہ کھولیں۔ - اسے اعتراض کے سامنے رکھیں - آپ کو اس کے ارد گرد ایک باؤنڈنگ باکس نظر آئے گا۔ - ایک متن ظاہر ہوگا جو آپ کو آبجیکٹ کا نام بتاتا ہے۔ - ایک آواز اعتراض کا نام کہہ رہی ہوگی۔</string>
+    <string name="djdhdf">ہدایات</string>
+    <string name="fdff">Proceed</string>
+    <string name="dsdsd">Cancelling</string>
+    <string name="sdsds">Button</string>
+    <string name="asasasa">امتحان شروع کریں؟</string>
+    <string name="sdsdsd">امتحان شروع کریں؟</string>
+    <string name="asasasmasm">امتحان منسوخ کریں۔</string>
 
 </resources>

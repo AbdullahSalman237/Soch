@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
 import java.io.ByteArrayOutputStream;
+import java.time.LocalDate;
 
 public class DBHandler extends SQLiteOpenHelper {
 
@@ -25,6 +26,12 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String option3 = "option3";
     private static final String option4 = "option4";
     private static final String IMAGE_BITMAP = "image_bitmap";
+
+    //table for scores
+
+    private static final String TABLE_NAMES = "scores";
+    private static final String RESULT = "result";
+    private static final String DATE_OF_QUIZ = "date";
 
     // creating a constructor for our database handler.
     public DBHandler(Context context)
@@ -52,7 +59,14 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
         db.execSQL(query);
+
+        String CREATE_SCORES_TABLE = "CREATE TABLE " + TABLE_NAMES + " ("
+                + DATE_OF_QUIZ + " TEXT,"
+                + RESULT + " TEXT)";
+        db.execSQL(CREATE_SCORES_TABLE);
     }
+
+
     public void addUser(String PersonName, String PersonAge, String PersonMed) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -60,9 +74,31 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(NAME_COL, PersonName);
         values.put(AGE_COL, PersonAge);
         values.put(MED_COL, PersonMed);
+
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
+
+
+    // Insert score into the table
+    public void addScore(String date, String score) {
+        SQLiteDatabase db2 = this.getWritableDatabase();
+        db2.isOpen();
+        ContentValues values = new ContentValues();
+        values.put(RESULT, score);
+        values.put(DATE_OF_QUIZ, date);
+        try {
+            db2.beginTransaction();
+            db2.insert(TABLE_NAMES, null, values);
+            db2.setTransactionSuccessful();
+        } finally {
+            db2.endTransaction();
+        }
+        db2.close();
+
+    }
+
+
 
     public void insetImage(Drawable dbDrawable, String imageId, String o2, String o3, String o4) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -77,6 +113,15 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(IMAGE_BITMAP, stream.toByteArray());
         db.insert(TABLE_IMAGE, null, values);
         db.close();
+    }
+
+    // Get all scores from the table
+    public Cursor getAllScores() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor2;
+        cursor2 = db.rawQuery("SELECT * FROM "+TABLE_NAMES,null);
+
+        return cursor2;
     }
 
     public Image[] getImage() {
@@ -113,6 +158,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
+
+
     public boolean checkData(){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -124,6 +171,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
     }
+
     public boolean checkImages(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor2;
@@ -153,7 +201,6 @@ public class DBHandler extends SQLiteOpenHelper {
                 + AGE_COL + " TEXT,"
                 + MED_COL + " TEXT)";
 
-
         db.execSQL(query);
     }
 
@@ -162,6 +209,12 @@ public class DBHandler extends SQLiteOpenHelper {
         // this method is called to check if the table exists already.
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_IMAGE);
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAMES);
+        String q ="CREATE TABLE "+ TABLE_NAME + " ("
+                + DATE_OF_QUIZ + " TEXT,"
+                + RESULT + " TEXT)";
+
+        db.execSQL(q);
         onCreate(db);
     }
 }
