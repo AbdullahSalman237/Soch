@@ -1,10 +1,12 @@
 package com.example.soch;
 
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
@@ -18,7 +20,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     //ActivityMainBinding binding;
-    private Button SubmitDetails;
+    private Button SubmitDetails,resume;
     private DBHandler dbHandler;
     private EditText NameEdt;
     private EditText AgeEdt;
@@ -31,6 +33,22 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();  //hiding the top action bar
         }
+
+        Dialog dialog = new Dialog(this);
+        //user is shown a cancellation dialogbox
+        dialog.setContentView(R.layout.user_instructions);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        resume = dialog.findViewById(R.id.button3);
+
+        resume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
         NameEdt = findViewById(R.id.patientname);// saving id in a variable
         AgeEdt = findViewById(R.id.patientage); //  for to manipulate the EditText placeholder
         MedEdt = findViewById(R.id.medicationTime);

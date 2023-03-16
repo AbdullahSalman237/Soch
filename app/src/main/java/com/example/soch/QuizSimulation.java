@@ -30,6 +30,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
@@ -43,17 +45,32 @@ public class QuizSimulation extends Fragment {
     private Boolean quizStarted=false;
     private int i =0;
     private TextView button1,button2,button3,button4;
-    private Button start_quiz,new_quiz,cancel_quiz,resume_quiz,resultToHome,resultToGD,startToHome,startToGd;
+    private Button start_quiz,new_quiz,cancel_quiz,resume_quiz,resultToHome,resultToGD,startToHome,startToGd,c,r;
     public String allOptions="";
     private TextView textView1,textView2,textView3,textView4,textViewScore,result;
     private ImageView imageView;
-
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    String currentDateAndTime;
     String x=null;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_quiz_simulation, container, false);
+////////////////////////////////////////////////////////////////////////
+        Dialog dialog_instructions = new Dialog(getContext());
+        //user is shown a cancellation dialogbox
+        dialog_instructions.setContentView(R.layout.quiz_instructions);
+        dialog_instructions.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog_instructions.setCancelable(false);
 
+        r=dialog_instructions.findViewById(R.id.doit);
+        r.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog_instructions.dismiss();
+            }
+        });
+        dialog_instructions.show();
 ////////////////////////////////////////////////////////////////////////
         //Cancel Quiz Dialog Box
 
@@ -341,6 +358,7 @@ public class QuizSimulation extends Fragment {
     public boolean EvaluteQuiz()
     {
         textViewScore.setText(String.valueOf(score));
+
         size++;
         if(i>=totalImages)
             i=0;
@@ -355,6 +373,11 @@ public class QuizSimulation extends Fragment {
             result.setText(String.valueOf(score));
             resultToGD=dialog2.findViewById(R.id.godseye);
             resultToHome=dialog2.findViewById(R.id.home);
+
+            DBHandler dbHandler = new DBHandler(getContext());
+            currentDateAndTime = sdf.format(new Date());
+            dbHandler.insertScore(currentDateAndTime,String.valueOf(score));
+
             resultToGD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)

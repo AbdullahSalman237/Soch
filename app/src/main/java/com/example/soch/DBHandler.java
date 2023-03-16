@@ -13,7 +13,7 @@ import java.io.ByteArrayOutputStream;
 
 public class DBHandler extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "Soch";
+    private static final String DB_NAME = "DB";
     private static final int DB_VERSION = 1;
     private static final String TABLE_NAME = "PatientDetails";
     private static final String TABLE_IMAGE = "ImageTable";
@@ -25,6 +25,10 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String option3 = "option3";
     private static final String option4 = "option4";
     private static final String IMAGE_BITMAP = "image_bitmap";
+    private static final String TABLE_SCORE = "scores";
+    private static final String RESULT = "result";
+    private static final String DATE_OF_QUIZ = "date";
+
 
     // creating a constructor for our database handler.
     public DBHandler(Context context)
@@ -50,8 +54,23 @@ public class DBHandler extends SQLiteOpenHelper {
                 + AGE_COL + " TEXT,"
                 + MED_COL + " TEXT)";
 
-
         db.execSQL(query);
+
+        String CREATE_SCORES_TABLE = "CREATE TABLE " + TABLE_SCORE + " ("
+                + RESULT + " TEXT,"
+                + DATE_OF_QUIZ + " TEXT)";
+        db.execSQL(CREATE_SCORES_TABLE);
+    }
+    public void insertScore(String date, String score) {
+        SQLiteDatabase db2 = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(RESULT, score);
+        values.put(DATE_OF_QUIZ, date);
+            db2.insert(TABLE_SCORE, null, values);
+
+        db2.close();
+
     }
     public void addUser(String PersonName, String PersonAge, String PersonMed) {
 
@@ -142,6 +161,24 @@ public class DBHandler extends SQLiteOpenHelper {
         return cursorCourses;
 
     }
+    public void OnUpgradeScore()
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SCORE);
+
+        String CREATE_SCORES_TABLE = "CREATE TABLE " + TABLE_SCORE + " ("
+                + RESULT + " TEXT,"
+                + DATE_OF_QUIZ + " TEXT)";
+        db.execSQL(CREATE_SCORES_TABLE);
+    }
+    public Cursor getAllScores() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor2;
+        cursor2 = db.rawQuery("SELECT * FROM "+TABLE_SCORE,null);
+
+        return cursor2;
+    }
+
     public void OnUpgradeUser()
     {
         SQLiteDatabase db=this.getWritableDatabase();
