@@ -383,8 +383,8 @@ public class QuizSimulation extends Fragment {
             String formattedDate = currentDate.format(formatter);
             result=dialog2.findViewById(R.id.score_of);
             String results = result.toString();
-            DBHandler dbhelper = new DBHandler(getContext());
-            dbhelper.addScore(formattedDate,results);
+            ScoreHandler scoreHandler = new ScoreHandler(getContext());
+            scoreHandler.addScore(formattedDate,results);
 
             new_quiz=dialog2.findViewById(R.id.new_quiz);
             result.setText(String.valueOf(score));

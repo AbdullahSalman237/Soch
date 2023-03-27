@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class User extends Fragment {
     View view;
@@ -31,6 +36,8 @@ public class User extends Fragment {
         getPatientData();
         return view;
     }
+
+
     public void getPatientData()
     {
         dbHandler = new DBHandler(getContext());
@@ -56,20 +63,35 @@ public class User extends Fragment {
             }
         });
 
+
         c=dbHandler.RetrieveData();
-        if(c.moveToFirst())
-        {
+        // Retrieve array values from the database
+
+        if(c.moveToFirst()) {
 
             String name = c.getString(0);
             String age = c.getString(1);
-            String med = c.getString(2);
 
             NameEdt.setText(name);
             AgeEdt.setText(age);
-            MedEdt.setText(med);
+            //MedEdt.setText(med);
+
         }
+        MedicationHandler medHandler = new MedicationHandler(getContext()); // Create an instance of the DBHandler class
+        Cursor arrayValues = medHandler.getArrayValues(); //
+        if(arrayValues.moveToFirst()) {
 
-
+            String med = arrayValues.getString(0);
+            ArrayList<String> medication = new ArrayList<String>();
+            medication.add(med);
+            String editTextValue = TextUtils.join(",", medication);
+            //Log.d("medication",medication);
+            //System.out.print(med);
+            Toast.makeText(getContext(),editTextValue,Toast.LENGTH_SHORT).show();
+            if (MedEdt != null) {
+                MedEdt.setText(editTextValue);
+            }
+        }
     }
 
 }

@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     //ActivityMainBinding binding;
     private Button SubmitDetails, resume, btn, timepicker;
     private DBHandler dbHandler;
+    private MedicationHandler medicationHandler;
     private EditText NameEdt;
     private EditText AgeEdt;
     private TextView MedEdt;
@@ -135,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
         /////////////////////////////////////
 
 
+        medicationHandler = new MedicationHandler(MainActivity.this);
         dbHandler = new DBHandler(MainActivity.this);
         //  dbHandler.OnUpgrade();
         SubmitDetails = findViewById(R.id.signup);//button
@@ -196,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
         signup();
         dbHandler.OnUpgradeUser(); // delete any previous data
         dbHandler.addUser(PersonName, PersonAge, PersonMed);// insert in db with string varibles
+        medicationHandler.addArrayValue(PersonMed); //added in Medication Table too.
         //yahan database mein write ho raha hai
     }
 
