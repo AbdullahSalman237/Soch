@@ -4,6 +4,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Report">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/nameIcon"
+    android:text="@string/name"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginTop="100dp"
+    android:layout_marginRight="30dp"
+    android:textColor="@color/black"
+
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/nameIcon"
+        android:id="@+id/Name"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="5dp"
+        android:hint="@string/name"
+        android:textColor="@color/black"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/AgeIcon"
+        android:text="@string/age"
+        app:layout_constraintStart_toEndOf="@id/Age"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="5dp"
+android:textColor="@color/black"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/Age"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="30dp"
+        android:hint="@string/age"
+        android:textColor="@color/black"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Total_quiz"
+        app:layout_constraintTop_toBottomOf="@id/Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/Total"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:layout_marginRight="30dp"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toLeftOf="@+id/Total_quiz"
+        android:id="@+id/Quizes"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/Name"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="30dp"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/avgIcon"
+        android:text="@string/average"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Age"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/black"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/avgIcon"
+        android:id="@+id/avg"
+        app:layout_constraintTop_toBottomOf="@id/Age"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+
+android:textColor="@color/black"
+
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
