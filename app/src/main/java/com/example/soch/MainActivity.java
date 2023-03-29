@@ -20,11 +20,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.soch.adapter.MedAdapter;
+import com.example.soch.adapter.OnItemClickListener;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnItemClickListener {
     //ActivityMainBinding binding;
     private Button SubmitDetails,resume,addMed;
     private DBHandler dbHandler;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         time=findViewById(R.id.medication);
         time.setHasFixedSize(true);
         time.setLayoutManager(new LinearLayoutManager(this));
-        medAdapter=new MedAdapter(MedicationTime,MainActivity.this);
+        medAdapter=new MedAdapter(MedicationTime,MainActivity.this, (OnItemClickListener) MainActivity.this);
         time.setAdapter(medAdapter);
 
         Dialog dialog = new Dialog(this);
@@ -189,5 +190,19 @@ public class MainActivity extends AppCompatActivity {
 
         //yahan database mein write ho raha hai
     }
+    public void onItemClick(int pos){
+//        Toast.makeText(this, MedicationTime.get(pos), Toast.LENGTH_SHORT).show();
+//        MedicationTime.remove(MedicationTime.get(pos));
+//        medAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemLongClick(int pos) {
+//        Toast.makeText(this, MedicationTime.get(pos), Toast.LENGTH_SHORT).show();
+
+        MedicationTime.remove(MedicationTime.get(pos));
+        medAdapter.notifyDataSetChanged();
+    }
+
 
 }

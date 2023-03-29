@@ -20,10 +20,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.soch.adapter.MedAdapter;
+import com.example.soch.adapter.OnItemClickListener;
 
 import java.util.ArrayList;
 
-public class User extends Fragment {
+public class User extends Fragment implements OnItemClickListener{
     View view;
     private DBHandler dbHandler;
     ImageView updateData;
@@ -46,7 +47,7 @@ public class User extends Fragment {
         MedEdt = (RecyclerView) view.findViewById(R.id.medicationTime);
         MedEdt.setHasFixedSize(true);
         MedEdt.setLayoutManager(new LinearLayoutManager(getContext()));
-        medAdapter=new MedAdapter(MedicationTime,getContext());
+        medAdapter=new MedAdapter(MedicationTime,getContext(), this);
         MedEdt.setAdapter(medAdapter);
 
 
@@ -96,5 +97,13 @@ public class User extends Fragment {
 
 
     }
+    public void onItemClick(int pos)
+    {
 
+    }
+
+    @Override
+    public void onItemLongClick(int pos) {
+
+    }
 }

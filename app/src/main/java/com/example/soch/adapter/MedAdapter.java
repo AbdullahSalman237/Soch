@@ -15,22 +15,28 @@ import com.example.soch.R;
 
 import java.util.ArrayList;
 
-public class MedAdapter extends RecyclerView.Adapter<MedAdapter.ViewHolder> {
+public class MedAdapter extends RecyclerView.Adapter<MedAdapter.ViewHolder> implements OnItemClickListener {
     // creating variables for our ArrayList and context
     private ArrayList<String> Medicationtime;
     private Context context;
+    private final OnItemClickListener onItemClickListener;
+
 
     // creating constructor for our adapter class
-    public MedAdapter(ArrayList<String> MEDArrayList, Context context) {
+    public MedAdapter(ArrayList<String> MEDArrayList, Context context, OnItemClickListener onItemClickListener) {
         this.Medicationtime = MEDArrayList;
         this.context = context;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // passing our layout file for displaying our card item
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.medication, parent, false));
+
+        ViewHolder view = new ViewHolder(LayoutInflater.from(context).inflate(R.layout.medication, parent, false),onItemClickListener);
+//        view.setOnClickListener(OnClickListener);
+        return view;
     }
 
     @Override
@@ -41,10 +47,21 @@ public class MedAdapter extends RecyclerView.Adapter<MedAdapter.ViewHolder> {
         holder.time.setText(time);
     }
 
+
     @Override
     public int getItemCount() {
         // returning the size of our array list.
         return Medicationtime.size();
+    }
+
+    @Override
+    public void onItemClick(int pos) {
+
+    }
+
+    @Override
+    public void onItemLongClick(int pos) {
+
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -52,11 +69,41 @@ public class MedAdapter extends RecyclerView.Adapter<MedAdapter.ViewHolder> {
 
         private final TextView time;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnItemClickListener onItemClickListener) {
             super(itemView);
             // initializing our text views.
-            time=itemView.findViewById(R.id.time);
+            time = itemView.findViewById(R.id.time);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    if (onItemClickListener != null) {
+                        int pos = getAdapterPosition();
+                        if (pos != RecyclerView.NO_POSITION) {
+                            onItemClickListener.onItemClick(pos);
+                        }
+                    }
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+
+                    if (onItemClickListener != null) {
+                        int pos = getAdapterPosition();
+                        if (pos != RecyclerView.NO_POSITION) {
+                            onItemClickListener.onItemLongClick(pos);
+                        }
+                    }
+                    return false;
+                }
+            });
+
         }
+
     }
 }
+
+
 
