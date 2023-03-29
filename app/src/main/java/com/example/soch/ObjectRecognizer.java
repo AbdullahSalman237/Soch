@@ -9,7 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ConfigurationInfo;
 import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -20,6 +20,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,15 +46,17 @@ import com.example.soch.tracking.MultiBoxTracker;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 public class ObjectRecognizer extends Fragment {
     View view;
     Button r;
-
+    private DBHandler dbHandler;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     public static final float MINIMUM_CONFIDENCE_TF_OD_API = 0.55f;
 
     private static final int PERMISSION_REQUEST_CAMERA = 0;
+    private Button mButtonSpeak;
 
     private boolean hasCameraPermission() {
         int cameraPermission = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA);
@@ -90,7 +94,7 @@ public class ObjectRecognizer extends Fragment {
     // Minimum detection confidence to track a detection.
     private static final boolean MAINTAIN_ASPECT = true;
     private Integer sensorOrientation = 90;
-
+    private android.speech.tts.TextToSpeech mTTS;
     private Classifier detector;
 
     private Matrix frameToCropTransform;
@@ -177,8 +181,8 @@ public class ObjectRecognizer extends Fragment {
         }
 //        tracker.trackResults(mappedRecognitions, new Random().nextInt());
 //        trackingOverlay.postInvalidate();
-        Toast.makeText(getContext(), results.get(x-1).getTitle().toString(), Toast.LENGTH_SHORT).show();
-
+//        Toast.makeText(getContext(), results.get(x-1).getTitle().toString(), Toast.LENGTH_SHORT).show();
+        getObject( results.get(x-1).getTitle().toString());
         imageView.setImageBitmap(bitmap);
     }
 
@@ -191,6 +195,8 @@ public class ObjectRecognizer extends Fragment {
         view = inflater.inflate(R.layout.fragment_object_recognizer, container, false);
         // By ID we can get each component which id is assigned in XML file get Buttons and imageview.
         imageView = view.findViewById(R.id.imageView12);
+        dbHandler = new DBHandler(getContext());
+
         Dialog dialog_instructions = new Dialog(getContext());
         //user is shown a cancellation dialogbox
         dialog_instructions.setContentView(R.layout.object_instructions);
@@ -204,6 +210,22 @@ public class ObjectRecognizer extends Fragment {
             }
         });
         dialog_instructions.show();
+        mTTS = new android.speech.tts.TextToSpeech(getContext(), new android.speech.tts.TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == android.speech.tts.TextToSpeech.SUCCESS) {
+                    int result = mTTS.setLanguage(new Locale("ur"));
+                    if (result == android.speech.tts.TextToSpeech.LANG_MISSING_DATA
+                            || result == android.speech.tts.TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("TTS", "Language not supported");
+                    } else {
+//                        mButtonSpeak.setEnabled(true);
+                    }
+                } else {
+                    Log.e("TTS", "Initialization failed");
+                }
+            }
+        });
         Button button = view.findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -240,15 +262,21 @@ public class ObjectRecognizer extends Fragment {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
-
-
         return view;
     }
+    private void getObject(String obj) {
+        String text ="";
+//
+        Toast.makeText(getContext(),obj,Toast.LENGTH_SHORT).show();
+        Cursor c=dbHandler.getObjName(obj);
+        if (c.moveToNext()){
+            text=c.getString(1);
+        }
+        mTTS.speak(text, android.speech.tts.TextToSpeech.QUEUE_FLUSH, null);
+    }
+
+
+
     public void detect(){
         Handler handler = new Handler();
         Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();

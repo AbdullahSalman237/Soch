@@ -13,7 +13,7 @@ import java.io.ByteArrayOutputStream;
 
 public class DBHandler extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "soch2";
+    private static final String DB_NAME = "soch";
     private static final int DB_VERSION = 1;
     private static final String TABLE_NAME = "PatientDetails";
     private static final String TABLE_IMAGE = "ImageTable";
@@ -30,6 +30,9 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String DATE_OF_QUIZ = "date";
     private  static final String MEDTABLE="MED";
     private static final String col="time";
+    private static final String TABLE_OBJECT = "object";
+    private static final String ENG_NAME="eng_name";
+    private static final String URDU_NAME= "urdu_name";
 
     // creating a constructor for our database handler.
     public DBHandler(Context context)
@@ -61,8 +64,32 @@ public class DBHandler extends SQLiteOpenHelper {
                 + DATE_OF_QUIZ + " TEXT)";
         db.execSQL(CREATE_SCORES_TABLE);
 
+        String CREATE_OBJECT_TABLE = "CREATE TABLE " + TABLE_OBJECT + " ("
+                + ENG_NAME + " TEXT,"
+                + URDU_NAME + " TEXT)";
+        db.execSQL(CREATE_OBJECT_TABLE);
+
+
         String MED_TABLE = "CREATE TABLE " + MEDTABLE + " (" + col + " TEXT)";
         db.execSQL(MED_TABLE);
+    }
+    public void insertObjName(String eng,String urdu) {
+        SQLiteDatabase db2 = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(ENG_NAME, eng);
+        values.put(URDU_NAME,urdu);
+        db2.insert(TABLE_OBJECT, null, values);
+        db2.close();
+
+    }
+    public Cursor getObjName(String eng)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_OBJECT , null);
+
+        return cursor;
     }
     public void insertMedTIme(String time) {
         SQLiteDatabase db2 = this.getWritableDatabase();
@@ -182,6 +209,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return cursor;
 
     }
+
     public void OnUpgradeScore()
     {
         SQLiteDatabase db=this.getWritableDatabase();
@@ -222,6 +250,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_IMAGE);
         db.execSQL("DROP TABLE IF EXISTS " + MEDTABLE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SCORE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_OBJECT );
         onCreate(db);
     }
 }

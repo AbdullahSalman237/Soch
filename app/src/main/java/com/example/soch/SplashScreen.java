@@ -25,7 +25,8 @@ public class SplashScreen extends AppCompatActivity {
                     }
                     else{
                         Drawable dbDrawable ;
-
+                        db.insertObjName("clock","گھڑی");
+                        db.insertObjName("glasses","عینک");
 
                         dbDrawable=getResources().getDrawable(R.drawable.newspaper);
                         db.insetImage(dbDrawable, "اخبار","کاغزات","کتاب","رسالہ");//1
