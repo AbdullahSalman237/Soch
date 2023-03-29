@@ -142,7 +142,7 @@ public class ObjectRecognizer extends Fragment {
 //            LOGGER.e(e, "Exception initializing classifier!");
             Toast toast =
                     Toast.makeText(
-                            getContext(), "Classifier could not be initialized", Toast.LENGTH_SHORT);
+                            getContext(), "Object Detector could not be initialized", Toast.LENGTH_SHORT);
             toast.show();
             //finish();
         }
@@ -208,7 +208,9 @@ public class ObjectRecognizer extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(hasCameraPermission())
                 dispatchTakePictureIntent();
+                else requestCameraPermission();
 
 
             }
@@ -216,12 +218,12 @@ public class ObjectRecognizer extends Fragment {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-        this.sourceBitmap = Utils.getBitmapFromAsset(getContext(), "glasses(437).jpg");
-
-
-        this.cropBitmap = Utils.processBitmap(sourceBitmap, TF_OD_API_INPUT_SIZE);
-
-        this.imageView.setImageBitmap(cropBitmap);
+//        this.sourceBitmap = Utils.getBitmapFromAsset(getContext(), "glasses(437).jpg");
+//
+//
+//        this.cropBitmap = Utils.processBitmap(sourceBitmap, TF_OD_API_INPUT_SIZE);
+//
+//        this.imageView.setImageBitmap(cropBitmap);
 
         initBox();
         ActivityManager activityManager = (ActivityManager) getContext().getSystemService(Context.ACTIVITY_SERVICE);

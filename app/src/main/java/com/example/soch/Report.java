@@ -56,11 +56,13 @@ public class Report extends AppCompatActivity {
                 min=results.get(i);
             total += results.get(i);
         }
-        average = total / results.size(); // finding ther average value
-        Toast.makeText(this,"avg" +String.valueOf(average), Toast.LENGTH_SHORT).show();
+        if (results.size()>0) {
+            average = total / results.size(); // finding ther average value
+//            Toast.makeText(this, "avg" + String.valueOf(average), Toast.LENGTH_SHORT).show();
 
-        avg=findViewById(R.id.avg);
-        avg.setText(String.valueOf(average));
 
+            avg = findViewById(R.id.avg);
+            avg.setText(String.valueOf(average));
+        }
     }
 }

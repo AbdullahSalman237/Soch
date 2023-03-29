@@ -1,5 +1,6 @@
 package com.example.soch;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -15,17 +16,26 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.soch.adapter.MedAdapter;
+
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     //ActivityMainBinding binding;
-    private Button SubmitDetails,resume;
+    private Button SubmitDetails,resume,addMed;
     private DBHandler dbHandler;
     private EditText NameEdt;
     private EditText AgeEdt;
     private TextView MedEdt;
+    private RecyclerView time;
+    private MedAdapter medAdapter;
     private int hour,minute;
+    public ArrayList<String> MedicationTime = new ArrayList<>();
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);// when the intent is called
@@ -33,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();  //hiding the top action bar
         }
+        time=findViewById(R.id.medication);
+        time.setHasFixedSize(true);
+        time.setLayoutManager(new LinearLayoutManager(this));
+        medAdapter=new MedAdapter(MedicationTime,MainActivity.this);
+        time.setAdapter(medAdapter);
 
         Dialog dialog = new Dialog(this);
         //user is shown a cancellation dialogbox
@@ -51,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         NameEdt = findViewById(R.id.patientname);// saving id in a variable
         AgeEdt = findViewById(R.id.patientage); //  for to manipulate the EditText placeholder
-        MedEdt = findViewById(R.id.medicationTime);
+//        MedEdt = findViewById(R.id.medicationTime);
 
         //////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////     Age
@@ -59,10 +74,12 @@ public class MainActivity extends AppCompatActivity {
 //        String[] data = new String[]{"Berlin", "Moscow", "Tokyo", "Paris"};
 //        AgeEdt.setDisplayedValues(data);
 
+
         //////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////     Medicine Time
         /////////////////////////////////////////////////////////////////////////////
-        MedEdt.setOnClickListener(new View.OnClickListener() {
+        addMed=findViewById(R.id.addMed);
+        addMed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -71,15 +88,18 @@ public class MainActivity extends AppCompatActivity {
                     public void onTimeSet(TimePicker timePicker, int i, int i1) {
                         hour = i;
                         minute=i1;
-                        MedEdt.setText(String.format(Locale.getDefault(),"%02d:%02d",hour,minute));
+//                        MedEdt.setText(String.format(Locale.getDefault(),"%02d:%02d",hour,minute));
+                        MedicationTime.add(String.format(Locale.getDefault(),"%02d:%02d",hour,minute));
 
+
+                        medAdapter.notifyDataSetChanged();
                     }
                 };
                 TimePickerDialog timePickerDialog=new TimePickerDialog(MainActivity.this,onTimeSetListener,hour,minute,true);
                 timePickerDialog.show();
 
-
             }
+
 
         });
 /////////////////////////////////////////////
@@ -96,11 +116,23 @@ public class MainActivity extends AppCompatActivity {
         {
             String name = c.getString(0);
             String age = c.getString(1);
-            String med = c.getString(2);
+
             NameEdt.setText(name);
             AgeEdt.setText(age); //setting data at EditText placeholder
-            MedEdt.setText(med); //from the database
+//            MedEdt.setText(med); //from the database
         }
+
+        c=dbHandler.getMedTime();
+        if (c.moveToFirst())
+        {
+            do{
+                MedicationTime.add(c.getString(0));
+            }while (c.moveToNext());
+
+        }
+
+        medAdapter.notifyDataSetChanged();
+
         // when the submit button is clicked a function is called
         SubmitDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,13 +155,12 @@ public class MainActivity extends AppCompatActivity {
         // saving string value of EditText placholder in variables
         String PersonName = NameEdt.getText().toString();
         String PersonAge = AgeEdt.getText().toString();
-        String PersonMed = MedEdt.getText().toString();
+
         // only continue if the information is fulfilled
 
 
 
-        if (PersonName.matches("") || PersonAge.matches("")
-                || PersonMed.matches("")) {
+        if (PersonName.matches("") || PersonAge.matches("")){
             Toast.makeText(this, "براۓ مہربانی خالی جگہ پر کریں", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -144,10 +175,18 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "براۓ مہربانی درست عمر کا اندراج کریں", Toast.LENGTH_SHORT).show();
             return;
         }
+
         // signup function opens dashboard
         signup();
+
         dbHandler.OnUpgradeUser(); // delete any previous data
-        dbHandler.addUser(PersonName, PersonAge, PersonMed);// insert in db with string varibles
+        dbHandler.addUser(PersonName, PersonAge);// insert in db with string varibles
+        for (int i=0;i<MedicationTime.size();i++)
+        {
+            dbHandler.insertMedTIme(MedicationTime.get(i));
+        }
+
+
         //yahan database mein write ho raha hai
     }
 

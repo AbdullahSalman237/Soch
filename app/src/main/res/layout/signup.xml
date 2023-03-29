@@ -61,30 +61,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/medicationTime"
-        android:layout_width="397dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/colouring"
-        android:drawableTint="#0E0E0E"
-        android:ems="10"
-        android:hint="@string/medicationtime"
-
-        android:gravity="center"
-        android:minHeight="48dp"
-        android:scaleX="@dimen/material_emphasis_high_type"
-        android:textAlignment="center"
-        android:textColorHint="#090909"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.569"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/medication"
+        app:layout_constraintTop_toBottomOf="@id/patientage"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/patientage"
-        tools:ignore="TextContrastCheck"
-        tools:targetApi="m" />
+        app:layout_constraintEnd_toEndOf="parent"
 
-    <!--        android:inputType="textPersonName"-->
+
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        />
+    <Button
+        android:id="@+id/addMed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/medication"
+        app:layout_constraintTop_toBottomOf="@id/patientage"
+        android:text="add"
+        />
 
     <EditText
 

@@ -13,13 +13,13 @@ import java.io.ByteArrayOutputStream;
 
 public class DBHandler extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "DB";
+    private static final String DB_NAME = "soch2";
     private static final int DB_VERSION = 1;
     private static final String TABLE_NAME = "PatientDetails";
     private static final String TABLE_IMAGE = "ImageTable";
     private static final String NAME_COL = "name";
     private static final String AGE_COL = "age";
-    private static final String MED_COL = "med";
+//    private static final String MED_COL = "med";
     private static final String IMAGE_ID = "image_id";
     private static final String option2 = "option2";
     private static final String option3 = "option3";
@@ -28,7 +28,8 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String TABLE_SCORE = "scores";
     private static final String RESULT = "result";
     private static final String DATE_OF_QUIZ = "date";
-
+    private  static final String MEDTABLE="MED";
+    private static final String col="time";
 
     // creating a constructor for our database handler.
     public DBHandler(Context context)
@@ -51,8 +52,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "CREATE TABLE " + TABLE_NAME + " ("
 
                 + NAME_COL + " TEXT,"
-                + AGE_COL + " TEXT,"
-                + MED_COL + " TEXT)";
+                + AGE_COL + " TEXT)";
 
         db.execSQL(query);
 
@@ -60,7 +60,28 @@ public class DBHandler extends SQLiteOpenHelper {
                 + RESULT + " TEXT,"
                 + DATE_OF_QUIZ + " TEXT)";
         db.execSQL(CREATE_SCORES_TABLE);
+
+        String MED_TABLE = "CREATE TABLE " + MEDTABLE + " (" + col + " TEXT)";
+        db.execSQL(MED_TABLE);
     }
+    public void insertMedTIme(String time) {
+        SQLiteDatabase db2 = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(col, time);
+        db2.insert(MEDTABLE, null, values);
+        db2.close();
+
+    }
+    public Cursor getMedTime()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + MEDTABLE, null);
+
+        return cursor;
+    }
+
     public void insertScore(String date, String score) {
         SQLiteDatabase db2 = this.getWritableDatabase();
 
@@ -72,13 +93,13 @@ public class DBHandler extends SQLiteOpenHelper {
         db2.close();
 
     }
-    public void addUser(String PersonName, String PersonAge, String PersonMed) {
+    public void addUser(String PersonName, String PersonAge) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(NAME_COL, PersonName);
         values.put(AGE_COL, PersonAge);
-        values.put(MED_COL, PersonMed);
+
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
@@ -156,9 +177,9 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // on below line we are creating a cursor with query to read data from database.
-        Cursor cursorCourses = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 
-        return cursorCourses;
+        return cursor;
 
     }
     public void OnUpgradeScore()
@@ -183,14 +204,14 @@ public class DBHandler extends SQLiteOpenHelper {
     {
         SQLiteDatabase db=this.getWritableDatabase();
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + MEDTABLE);
+
+        String MED_TABLE = "CREATE TABLE " + MEDTABLE + " (" + col + " TEXT)";
+        db.execSQL(MED_TABLE);
 
         String query = "CREATE TABLE " + TABLE_NAME + " ("
-
                 + NAME_COL + " TEXT,"
-                + AGE_COL + " TEXT,"
-                + MED_COL + " TEXT)";
-
-
+                + AGE_COL + " TEXT)";
         db.execSQL(query);
     }
 
@@ -199,6 +220,8 @@ public class DBHandler extends SQLiteOpenHelper {
         // this method is called to check if the table exists already.
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_IMAGE);
+        db.execSQL("DROP TABLE IF EXISTS " + MEDTABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SCORE);
         onCreate(db);
     }
 }
