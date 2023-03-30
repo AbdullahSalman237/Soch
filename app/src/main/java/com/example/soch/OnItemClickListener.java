@@ -1,4 +1,4 @@
-package com.example.soch.adapter;
+package com.example.soch;
 
 public interface OnItemClickListener {
     void onItemClick(int pos);

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.soch.OnItemClickListener;
 import com.example.soch.R;
 
 import java.util.ArrayList;

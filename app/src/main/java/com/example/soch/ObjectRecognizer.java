@@ -160,7 +160,7 @@ public class ObjectRecognizer extends Fragment {
         paint.setStrokeWidth(2.0f);
 
         int x = results.size();
-        Toast.makeText(getContext(),String.valueOf(x), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(),String.valueOf(x), Toast.LENGTH_SHORT).show();
 
         final List<Classifier.Recognition> mappedRecognitions =
                 new LinkedList<Classifier.Recognition>();
@@ -170,9 +170,14 @@ public class ObjectRecognizer extends Fragment {
 
             if (location != null && result.getConfidence() >= MINIMUM_CONFIDENCE_TF_OD_API) {
 //                Toast.makeText(this, result.getTitle().toString() , Toast.LENGTH_SHORT).show();
-
-                canvas.drawRect(location, paint);
-
+                float r,l;
+                r=result.getLocation().right;
+                l=result.getLocation().left;
+                float bb=r-l;
+                if (bb>50) {
+                    canvas.drawRect(location, paint);
+                    getObject(result.getTitle().toString());
+                }
 //                cropToFrameTransform.mapRect(location);
 //
 //                result.setLocation(location);
@@ -182,7 +187,8 @@ public class ObjectRecognizer extends Fragment {
 //        tracker.trackResults(mappedRecognitions, new Random().nextInt());
 //        trackingOverlay.postInvalidate();
 //        Toast.makeText(getContext(), results.get(x-1).getTitle().toString(), Toast.LENGTH_SHORT).show();
-        getObject( results.get(x-1).getTitle().toString());
+
+//        int loc = results.get(x-1).getLocation();
         imageView.setImageBitmap(bitmap);
     }
 
@@ -272,6 +278,7 @@ public class ObjectRecognizer extends Fragment {
         if (c.moveToNext()){
             text=c.getString(1);
         }
+
         mTTS.speak(text, android.speech.tts.TextToSpeech.QUEUE_FLUSH, null);
     }
 
@@ -307,8 +314,8 @@ public class ObjectRecognizer extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageView.setImageBitmap(imageBitmap);
+            sourceBitmap = (Bitmap) extras.get("data");
+            imageView.setImageBitmap(sourceBitmap);
             detect();
         }
     }

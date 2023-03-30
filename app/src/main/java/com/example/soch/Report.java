@@ -14,12 +14,16 @@ public class Report extends AppCompatActivity {
 
     private DBHandler dbHandler;
 
-    TextView total_quiz, avg,name,age;
+    private TextView total_quiz, avg,name,age;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
+        getReport();
+    }
+    void getReport()
+    {
         name=findViewById(R.id.Name);
         age=findViewById(R.id.Age);
         dbHandler= new DBHandler(Report.this);
@@ -51,9 +55,9 @@ public class Report extends AppCompatActivity {
         int max=0;
         for(int i = 0; i < results.size(); i++)
         {  if(results.get(i)>max)
-                max=results.get(i);
-            else if (results.get(i)<min)
-                min=results.get(i);
+            max=results.get(i);
+        else if (results.get(i)<min)
+            min=results.get(i);
             total += results.get(i);
         }
         if (results.size()>0) {

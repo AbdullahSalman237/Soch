@@ -3,40 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/quiz_in"
     android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="169dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="126dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="166dp"
-        android:text="ہدایات"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextTextMultiLine"
-        android:layout_width="325dp"
-        android:layout_height="431dp"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="51dp"
-        android:layout_marginEnd="43dp"
-        android:layout_marginBottom="150dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:text="@string/stuffff"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        android:autofillHints="" />
 
     <Button
         android:id="@+id/doit"
@@ -44,8 +12,10 @@
         android:layout_height="66dp"
         android:layout_marginStart="163dp"
         android:layout_marginEnd="160dp"
-        android:layout_marginBottom="60dp"
-        android:text="Okay"
+        android:layout_marginBottom="140dp"
+        android:text="@string/urududud"
+        android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:background="@color/white">
 
 
     <ImageView
@@ -62,25 +62,27 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/medication"
-        app:layout_constraintTop_toBottomOf="@id/patientage"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+
+
+        android:layout_marginStart="70dp"
+        android:layout_marginBottom="-300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        />
     <Button
         android:id="@+id/addMed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="ادویات کا وقت"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/medication"
-        app:layout_constraintTop_toBottomOf="@id/patientage"
-        android:text="add"
-        />
+        app:layout_constraintTop_toBottomOf="@id/patientage" />
 
     <EditText
 
@@ -110,7 +112,7 @@
         android:id="@+id/signup"
         android:layout_width="262dp"
         android:layout_height="69dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/round"
         android:onClick="signup"
         android:text="@string/darjkarein"
@@ -121,7 +123,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
