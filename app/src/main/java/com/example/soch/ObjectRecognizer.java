@@ -35,13 +35,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.soch.customview.OverlayView;
-import com.example.soch.env.ImageUtils;
-import com.example.soch.env.Logger;
+//import com.example.soch.env.ImageUtils;
+//import com.example.soch.env.Logger;
 import com.example.soch.env.Utils;
 import com.example.soch.tflite.Classifier;
 import com.example.soch.tflite.YoloV5Classifier;
-import com.example.soch.tracking.MultiBoxTracker;
+//import com.example.soch.tracking.MultiBoxTracker;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -81,7 +80,7 @@ public class ObjectRecognizer extends Fragment {
     }
 
 
-    private static final Logger LOGGER = new Logger();
+//    private static final Logger LOGGER = new Logger();
 
     public static final int TF_OD_API_INPUT_SIZE = 320;
 
@@ -89,7 +88,7 @@ public class ObjectRecognizer extends Fragment {
 
     private static final String TF_OD_API_MODEL_FILE = "best-fp16.tflite";
 
-    private static final String TF_OD_API_LABELS_FILE = "file:///android_asset/coco.txt";
+    private static final String TF_OD_API_LABELS_FILE = "file:///android_asset/labels.txt";
 
     // Minimum detection confidence to track a detection.
     private static final boolean MAINTAIN_ASPECT = true;
@@ -97,41 +96,12 @@ public class ObjectRecognizer extends Fragment {
     private android.speech.tts.TextToSpeech mTTS;
     private Classifier detector;
 
-    private Matrix frameToCropTransform;
-    private Matrix cropToFrameTransform;
-    private MultiBoxTracker tracker;
-    private OverlayView trackingOverlay;
-
-    protected int previewWidth = 0;
-    protected int previewHeight = 0;
-
     private Bitmap sourceBitmap;
     private Bitmap cropBitmap;
 
-    private Button cameraButton, detectButton;
     private ImageView imageView;
 
     private void initBox() {
-        previewHeight = TF_OD_API_INPUT_SIZE;
-        previewWidth = TF_OD_API_INPUT_SIZE;
-        frameToCropTransform =
-                ImageUtils.getTransformationMatrix(
-                        previewWidth, previewHeight,
-                        TF_OD_API_INPUT_SIZE, TF_OD_API_INPUT_SIZE,
-                        sensorOrientation, MAINTAIN_ASPECT);
-
-        cropToFrameTransform = new Matrix();
-        frameToCropTransform.invert(cropToFrameTransform);
-
-        tracker = new MultiBoxTracker(getContext());
-        trackingOverlay = view.findViewById(R.id.tracking_overlay);
-        trackingOverlay.addCallback(
-                canvas -> tracker.draw(canvas));
-
-        tracker.setFrameConfiguration(TF_OD_API_INPUT_SIZE, TF_OD_API_INPUT_SIZE, sensorOrientation);
-
-
-
 
         try {
             detector =
@@ -184,11 +154,8 @@ public class ObjectRecognizer extends Fragment {
 //                mappedRecognitions.add(result);
             }
         }
-//        tracker.trackResults(mappedRecognitions, new Random().nextInt());
-//        trackingOverlay.postInvalidate();
-//        Toast.makeText(getContext(), results.get(x-1).getTitle().toString(), Toast.LENGTH_SHORT).show();
 
-//        int loc = results.get(x-1).getLocation();
+
         imageView.setImageBitmap(bitmap);
     }
 
