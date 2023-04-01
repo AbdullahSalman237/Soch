@@ -1,31 +1,19 @@
 package com.example.soch.env;
 
-import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.os.Environment;
-import android.util.Log;
 
-//import org.tensorflow.lite.examples.detection.MainActivity;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStreamWriter;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
 public class Utils {
 
-    /**
-     * Memory-map the model file in Assets.
-     */
     public static MappedByteBuffer loadModelFile(AssetManager assets, String modelFilename)
             throws IOException {
         AssetFileDescriptor fileDescriptor = assets.openFd(modelFilename);
@@ -36,73 +24,8 @@ public class Utils {
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
     }
 
-    public static void softmax(final float[] vals) {
-        float max = Float.NEGATIVE_INFINITY;
-        for (final float val : vals) {
-            max = Math.max(max, val);
-        }
-        float sum = 0.0f;
-        for (int i = 0; i < vals.length; ++i) {
-            vals[i] = (float) Math.exp(vals[i] - max);
-            sum += vals[i];
-        }
-        for (int i = 0; i < vals.length; ++i) {
-            vals[i] = vals[i] / sum;
-        }
-    }
 
-    public static float expit(final float x) {
-        return (float) (1. / (1. + Math.exp(-x)));
-    }
 
-//    public static Bitmap scale(Context context, String filePath) {
-//        AssetManager assetManager = context.getAssets();
-//
-//        InputStream istr;
-//        Bitmap bitmap = null;
-//        try {
-//            istr = assetManager.open(filePath);
-//            bitmap = BitmapFactory.decodeStream(istr);
-//            bitmap = Bitmap.createScaledBitmap(bitmap, MainActivity.TF_OD_API_INPUT_SIZE, MainActivity.TF_OD_API_INPUT_SIZE, false);
-//        } catch (IOException e) {
-//            // handle exception
-//            Log.e("getBitmapFromAsset", "getBitmapFromAsset: " + e.getMessage());
-//        }
-//
-//        return bitmap;
-//    }
-
-    public static Bitmap getBitmapFromAsset(Context context, String filePath) {
-        AssetManager assetManager = context.getAssets();
-
-        InputStream istr;
-        Bitmap bitmap = null;
-        try {
-            istr = assetManager.open(filePath);
-            bitmap = BitmapFactory.decodeStream(istr);
-//            return bitmap.copy(Bitmap.Config.ARGB_8888,true);
-        } catch (IOException e) {
-            // handle exception
-            Log.e("getBitmapFromAsset", "getBitmapFromAsset: " + e.getMessage());
-        }
-
-        return bitmap;
-    }
-
-    /**
-     * Returns a transformation matrix from one reference frame into another.
-     * Handles cropping (if maintaining aspect ratio is desired) and rotation.
-     *
-     * @param srcWidth Width of source frame.
-     * @param srcHeight Height of source frame.
-     * @param dstWidth Width of destination frame.
-     * @param dstHeight Height of destination frame.
-     * @param applyRotation Amount of rotation to apply from one frame to another.
-     *  Must be a multiple of 90.
-     * @param maintainAspectRatio If true, will ensure that scaling in x and y remains constant,
-     * cropping the image if necessary.
-     * @return The transformation fulfilling the desired requirements.
-     */
     public static Matrix getTransformationMatrix(
             final int srcWidth,
             final int srcHeight,
@@ -168,21 +91,4 @@ public class Utils {
         return croppedBitmap;
     }
 
-    public static void writeToFile(String data, Context context) {
-        try {
-            String baseDir = Environment.getExternalStorageDirectory().getAbsolutePath();
-            String fileName = "myFile.txt";
-
-            File file = new File(baseDir + File.separator + fileName);
-
-            FileOutputStream stream = new FileOutputStream(file);
-            try {
-                stream.write(data.getBytes());
-            } finally {
-                stream.close();
-            }
-        } catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
-        }
-    }
 }

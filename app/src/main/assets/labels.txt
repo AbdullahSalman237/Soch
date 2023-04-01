@@ -1,9 +1,9 @@
-wheelchair
-walker
-television
+pen
+shoes
+fridge
 table
 sofa
-sink
+phone
 mug
 clock
 fan
