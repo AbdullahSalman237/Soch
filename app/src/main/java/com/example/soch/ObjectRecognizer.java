@@ -13,7 +13,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
@@ -26,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,12 +34,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-//import com.example.soch.env.ImageUtils;
-//import com.example.soch.env.Logger;
+
 import com.example.soch.env.Utils;
 import com.example.soch.tflite.Classifier;
 import com.example.soch.tflite.YoloV5Classifier;
-//import com.example.soch.tracking.MultiBoxTracker;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -51,8 +49,8 @@ public class ObjectRecognizer extends Fragment {
     Button r;
     private DBHandler dbHandler;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
-    public static final float MINIMUM_CONFIDENCE_TF_OD_API = 0.55f;
-
+    public static final float MINIMUM_CONFIDENCE_TF_OD_API = 0.35f;
+    public TextView label;
     private static final int PERMISSION_REQUEST_CAMERA = 0;
     private Button mButtonSpeak;
 
@@ -79,7 +77,6 @@ public class ObjectRecognizer extends Fragment {
     }
 
 
-//    private static final Logger LOGGER = new Logger();
 
     public static final int TF_OD_API_INPUT_SIZE = 320;
 
@@ -90,8 +87,7 @@ public class ObjectRecognizer extends Fragment {
     private static final String TF_OD_API_LABELS_FILE = "file:///android_asset/labels.txt";
 
     // Minimum detection confidence to track a detection.
-    private static final boolean MAINTAIN_ASPECT = true;
-    private Integer sensorOrientation = 90;
+
     private android.speech.tts.TextToSpeech mTTS;
     private Classifier detector;
 
@@ -112,12 +108,10 @@ public class ObjectRecognizer extends Fragment {
                             TF_OD_API_INPUT_SIZE);
         } catch (final IOException e) {
             e.printStackTrace();
-//            LOGGER.e(e, "Exception initializing classifier!");
             Toast toast =
                     Toast.makeText(
                             getContext(), "Object Detector could not be initialized", Toast.LENGTH_SHORT);
             toast.show();
-            //finish();
         }
     }
 
@@ -128,9 +122,6 @@ public class ObjectRecognizer extends Fragment {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(2.0f);
 
-        int x = results.size();
-//        Toast.makeText(getContext(),String.valueOf(x), Toast.LENGTH_SHORT).show();
-
         final List<Classifier.Recognition> mappedRecognitions =
                 new LinkedList<Classifier.Recognition>();
 
@@ -138,27 +129,28 @@ public class ObjectRecognizer extends Fragment {
             final RectF location = result.getLocation();
 
             if (location != null && result.getConfidence() >= MINIMUM_CONFIDENCE_TF_OD_API) {
-//                Toast.makeText(this, result.getTitle().toString() , Toast.LENGTH_SHORT).show();
                 float r,l;
                 r=result.getLocation().right;
                 l=result.getLocation().left;
                 float bb=r-l;
                 if (bb>50) {
-                    canvas.drawRect(location, paint);
-                    getObject(result.getTitle().toString());
+                     mappedRecognitions.add(result);
                 }
-//                cropToFrameTransform.mapRect(location);
-//
-//                result.setLocation(location);
-//                mappedRecognitions.add(result);
+
             }
         }
-
-
+        if (mappedRecognitions.size()>0) {
+            Classifier.Recognition obj = mappedRecognitions.get(0);
+            for (final Classifier.Recognition detection : mappedRecognitions) {
+                if((obj.getLocation().right-obj.getLocation().right)<detection.getLocation().right-obj.getLocation().left)
+                    obj=detection;
+            }
+            canvas.drawRect(obj.getLocation(),paint);
+            getObject(obj.getTitle().toString());
+        }
+        else getObject("");
         imageView.setImageBitmap(bitmap);
     }
-
-
 
     @Nullable
     @Override
@@ -168,7 +160,7 @@ public class ObjectRecognizer extends Fragment {
         // By ID we can get each component which id is assigned in XML file get Buttons and imageview.
         imageView = view.findViewById(R.id.imageView12);
         dbHandler = new DBHandler(getContext());
-
+        label=view.findViewById(R.id.label);
         Dialog dialog_instructions = new Dialog(getContext());
         //user is shown a cancellation dialogbox
         dialog_instructions.setContentView(R.layout.object_instructions);
@@ -182,6 +174,7 @@ public class ObjectRecognizer extends Fragment {
             }
         });
         dialog_instructions.show();
+        mButtonSpeak=view.findViewById(R.id.speak);
         mTTS = new android.speech.tts.TextToSpeech(getContext(), new android.speech.tts.TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -199,6 +192,7 @@ public class ObjectRecognizer extends Fragment {
             }
         });
         Button button = view.findViewById(R.id.button);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -209,28 +203,20 @@ public class ObjectRecognizer extends Fragment {
 
             }
         });
+        mButtonSpeak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+//        mTTS.speak(text, android.speech.tts.TextToSpeech.QUEUE_FLUSH, null);
+
+            }
+        });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-//        this.sourceBitmap = Utils.getBitmapFromAsset(getContext(), "glasses(437).jpg");
-//
-//
-//        this.cropBitmap = Utils.processBitmap(sourceBitmap, TF_OD_API_INPUT_SIZE);
-//
-//        this.imageView.setImageBitmap(cropBitmap);
 
         initBox();
         ActivityManager activityManager = (ActivityManager) getContext().getSystemService(Context.ACTIVITY_SERVICE);
         ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
-
-
-
-
-
-
-
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -240,12 +226,12 @@ public class ObjectRecognizer extends Fragment {
         String text ="";
 //
         Toast.makeText(getContext(),obj,Toast.LENGTH_SHORT).show();
-        Cursor c=dbHandler.getObjName(obj);
-        if (c.moveToNext()){
-            text=c.getString(1);
-        }
-
-        mTTS.speak(text, android.speech.tts.TextToSpeech.QUEUE_FLUSH, null);
+        label.setText(obj);
+//        Cursor c=dbHandler.getObjName(obj);
+//        if (c.moveToNext()){
+//            text=c.getString(1);
+//        }
+//        mTTS.speak(text, android.speech.tts.TextToSpeech.QUEUE_FLUSH, null);
     }
 
 

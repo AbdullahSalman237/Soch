@@ -38,15 +38,12 @@ public class Utils {
         if (applyRotation != 0) {
             // Translate so center of image is at origin.
             matrix.postTranslate(-srcWidth / 2.0f, -srcHeight / 2.0f);
-
             // Rotate around origin.
             matrix.postRotate(applyRotation);
         }
-
         // Account for the already applied rotation, if any, and then determine how
         // much scaling is needed for each axis.
         final boolean transpose = (Math.abs(applyRotation) + 90) % 180 == 0;
-
         final int inWidth = transpose ? srcHeight : srcWidth;
         final int inHeight = transpose ? srcWidth : srcHeight;
 
@@ -54,7 +51,6 @@ public class Utils {
         if (inWidth != dstWidth || inHeight != dstHeight) {
             final float scaleFactorX = dstWidth / (float) inWidth;
             final float scaleFactorY = dstHeight / (float) inHeight;
-
             if (maintainAspectRatio) {
                 // Scale by minimum factor so that dst is filled completely while
                 // maintaining the aspect ratio. Some image may fall off the edge.
@@ -65,12 +61,10 @@ public class Utils {
                 matrix.postScale(scaleFactorX, scaleFactorY);
             }
         }
-
         if (applyRotation != 0) {
             // Translate back from origin centered reference to destination frame.
             matrix.postTranslate(dstWidth / 2.0f, dstHeight / 2.0f);
         }
-
         return matrix;
     }
 

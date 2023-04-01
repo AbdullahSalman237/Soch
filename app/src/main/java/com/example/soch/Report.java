@@ -2,8 +2,11 @@ package com.example.soch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,14 +16,25 @@ public class Report extends AppCompatActivity {
 
 
     private DBHandler dbHandler;
-
+    private Button button;
     private TextView total_quiz, avg,name,age;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
+        getSupportActionBar().hide();
         getReport();
+        button=findViewById(R.id.userpage);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Report.this, Dashboard.class));
+
+
+            }
+        });
     }
     void getReport()
     {

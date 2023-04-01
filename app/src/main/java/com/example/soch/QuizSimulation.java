@@ -70,7 +70,7 @@ public class QuizSimulation extends Fragment {
                 dialog_instructions.dismiss();
             }
         });
-        dialog_instructions.show();
+
 ////////////////////////////////////////////////////////////////////////
         //Cancel Quiz Dialog Box
 
@@ -162,6 +162,7 @@ public class QuizSimulation extends Fragment {
         start_quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog_instructions.show();
                 GenerateQuiz();
                 dialog.dismiss();
 

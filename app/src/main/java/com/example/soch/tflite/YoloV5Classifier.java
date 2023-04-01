@@ -45,9 +45,6 @@ public class YoloV5Classifier implements Classifier {
 
     private  int output_box;
 
-//    private static final float[] XYSCALE = new float[]{1.2f, 1.1f, 1.05f};
-//
-//    private static final int NUM_BOXES_PER_BLOCK = 3;
 
     // Number of threads in the java app
     private static final int NUM_THREADS = 1;
@@ -62,7 +59,7 @@ public class YoloV5Classifier implements Classifier {
 
     private MappedByteBuffer tfliteModel;
 
-//    private final Interpreter.Options tfliteOptions = new Interpreter.Options();
+
 
     // Config values.
 
@@ -114,8 +111,7 @@ public class YoloV5Classifier implements Classifier {
                     d.nnapiDelegate = new NnApiDelegate();
                     options.addDelegate(d.nnapiDelegate);
                     options.setNumThreads(NUM_THREADS);
-//////
-                    options.setUseNNAPI(true);
+
                 }
             }
             if (isGPU) {
@@ -145,9 +141,8 @@ public class YoloV5Classifier implements Classifier {
         d.intValues = new int[d.INPUT_SIZE * d.INPUT_SIZE];
 /////////////////////////////////////Maimum possible detections
         d.output_box = (int) ((Math.pow((inputSize / 32), 2) + Math.pow((inputSize / 16), 2) + Math.pow((inputSize / 8), 2)) * 3);
-//        d.OUTPUT_WIDTH = output_width;
-//        d.MASKS = masks;
-//        d.ANCHORS = anchors;
+
+
         if (d.isModelQuantized){
             Tensor inpten = d.tfLite.getInputTensor(0);
             d.inp_scale = inpten.quantizationParams().getScale();
@@ -290,13 +285,11 @@ public class YoloV5Classifier implements Classifier {
         return right - left;
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected static final int BATCH_SIZE = 1;
-    protected static final int PIXEL_SIZE = 3;
 
     protected ByteBuffer convertBitmapToByteBuffer(Bitmap bitmap) {
 
         bitmap.getPixels(intValues, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
-        int pixel = 0;
+
 
         imgData.rewind();
         for (int i = 0; i < INPUT_SIZE; ++i) {
@@ -372,7 +365,7 @@ public class YoloV5Classifier implements Classifier {
             }
 
 
-            final float confidenceInClass = maxClass * confidence;
+            final float confidenceInClass = maxClass * confidence;//////////calculating the overall confidence
             if (confidenceInClass > getObjThresh()) {
                 final float xPos = out[0][i][0];///////////X-axis
                 final float yPos = out[0][i][1];///////////Y-axis
@@ -388,7 +381,6 @@ public class YoloV5Classifier implements Classifier {
                                 Math.max(0, yPos - h / 2),
                                 Math.min(bitmap.getWidth() - 1, xPos + w / 2),
                                 Math.min(bitmap.getHeight() - 1, yPos + h / 2));
-
                 detections.add(new Recognition("" + offset, labels.get(detectedClass),
                         confidenceInClass, rect, detectedClass));
             }
