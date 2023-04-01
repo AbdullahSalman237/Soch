@@ -64,12 +64,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/medication"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
 
 
-        android:layout_marginStart="70dp"
-        android:layout_marginBottom="-300dp"
+        android:layout_marginBottom="-355dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -77,12 +77,15 @@
         android:id="@+id/addMed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="-90dp"
+        android:background="@drawable/round"
         android:text="ادویات کا وقت"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/signup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/medication"
-        app:layout_constraintTop_toBottomOf="@id/patientage" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
 

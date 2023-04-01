@@ -20,7 +20,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -237,7 +236,7 @@ public class ObjectRecognizer extends Fragment {
             @Override
             public void onClick(View view) {
                 if(hasCameraPermission())
-                dispatchTakePictureIntent();
+                    dispatchTakePictureIntent();
                 else requestCameraPermission();
 
 
