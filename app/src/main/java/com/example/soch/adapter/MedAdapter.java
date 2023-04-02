@@ -15,7 +15,7 @@ import com.example.soch.OnItemClickListener;
 import com.example.soch.R;
 
 import java.util.ArrayList;
-
+// for the medication
 public class MedAdapter extends RecyclerView.Adapter<MedAdapter.ViewHolder> implements OnItemClickListener {
     // creating variables for our ArrayList and context
     private ArrayList<String> Medicationtime;
