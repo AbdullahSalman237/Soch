@@ -1,6 +1,6 @@
 package com.example.soch;
 
 public interface OnItemClickListener {
-    void onItemClick(int pos);
+//    void onItemClick(int pos);
     void onItemLongClick(int pos);
 }

@@ -56,11 +56,6 @@ public class MedAdapter extends RecyclerView.Adapter<MedAdapter.ViewHolder> impl
     }
 
     @Override
-    public void onItemClick(int pos) {
-
-    }
-
-    @Override
     public void onItemLongClick(int pos) {
 
     }
@@ -75,18 +70,6 @@ public class MedAdapter extends RecyclerView.Adapter<MedAdapter.ViewHolder> impl
             // initializing our text views.
             time = itemView.findViewById(R.id.time);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    if (onItemClickListener != null) {
-                        int pos = getAdapterPosition();
-                        if (pos != RecyclerView.NO_POSITION) {
-                            onItemClickListener.onItemClick(pos);
-                        }
-                    }
-                }
-            });
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
