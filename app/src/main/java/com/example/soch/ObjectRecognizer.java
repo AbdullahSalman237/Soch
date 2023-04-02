@@ -82,7 +82,7 @@ public class ObjectRecognizer extends Fragment {
 
     private static final boolean TF_OD_API_IS_QUANTIZED = false;
 
-    private static final String TF_OD_API_MODEL_FILE = "best-fp16.tflite";
+    private static final String TF_OD_API_MODEL_FILE = "Epoch130_conf0.5-fp16.tflite";
 
     private static final String TF_OD_API_LABELS_FILE = "file:///android_asset/labels.txt";
 
