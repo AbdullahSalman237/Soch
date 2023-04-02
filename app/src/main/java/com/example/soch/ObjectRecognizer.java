@@ -224,8 +224,6 @@ public class ObjectRecognizer extends Fragment {
     }
     private void getObject(String obj) {
         String text ="";
-//
-        Toast.makeText(getContext(),obj,Toast.LENGTH_SHORT).show();
         label.setText(obj);
 //        Cursor c=dbHandler.getObjName(obj);
 //        if (c.moveToNext()){
