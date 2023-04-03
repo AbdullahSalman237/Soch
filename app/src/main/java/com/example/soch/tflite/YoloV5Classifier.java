@@ -197,7 +197,6 @@ public class YoloV5Classifier implements Classifier {
     }
 
 
-
     @Override
     public float getObjThresh() {
         return ObjectRecognizer.MINIMUM_CONFIDENCE_TF_OD_API;

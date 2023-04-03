@@ -21,7 +21,6 @@ public class SplashScreen extends AppCompatActivity {
                 try {
                     if(db.checkImages()) {
 
-
                     }
                     else{
                         Drawable dbDrawable ;
