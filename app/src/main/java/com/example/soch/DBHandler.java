@@ -83,12 +83,12 @@ public class DBHandler extends SQLiteOpenHelper {
         db2.close();
 
     }
+    // Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_OBJECT , null);
     public Cursor getObjName(String eng)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_OBJECT , null);
-
+        Cursor cursor =db.rawQuery("SELECT * FROM " + TABLE_OBJECT + " WHERE "+ENG_NAME + " = '"+eng+"'"
+                ,null);
         return cursor;
     }
     public void insertMedTIme(String time) {

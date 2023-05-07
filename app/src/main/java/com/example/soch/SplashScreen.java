@@ -22,10 +22,29 @@ public class SplashScreen extends AppCompatActivity {
                     if(db.checkImages()) {
 
                     }
-                    else{
+                    else
+                    {
                         Drawable dbDrawable ;
                         db.insertObjName("clock","گھڑی");
                         db.insertObjName("glasses","عینک");
+                        db.insertObjName("pen","قلم");
+                        db.insertObjName("shoes","جوتا");
+                        db.insertObjName("fridge","فرج");
+                        db.insertObjName("table","میز");
+                        db.insertObjName("mug","پیالا");
+                        db.insertObjName("cabinet","الماری");
+                        db.insertObjName("sofa","صوفہ");
+                        db.insertObjName("phone","فون");
+                        db.insertObjName("fan","پنکھا");
+                        db.insertObjName("door","دروازہ");
+                        db.insertObjName("chair","کرسی");
+                        db.insertObjName("cane_stick","چھڑی");
+                        db.insertObjName("waterbottle","بوتل");
+                        db.insertObjName("basketbin","کوڑا دان");
+                        db.insertObjName("bed","پلنگ");
+                        db.insertObjName("glass","پیالی");
+                        db.insertObjName("spoon","چمچ");
+                        db.insertObjName("bowl","کٹورا");
 
                         dbDrawable=getResources().getDrawable(R.drawable.newspaper);
                         db.insetImage(dbDrawable, "اخبار","کاغزات","کتاب","رسالہ");//1

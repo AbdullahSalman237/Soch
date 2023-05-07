@@ -56,7 +56,8 @@ public class ObjectRecognizer extends Fragment {
 
     private boolean hasCameraPermission() {
         int cameraPermission = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA);
-        return cameraPermission == PackageManager.PERMISSION_GRANTED;
+        boolean permission=cameraPermission == PackageManager.PERMISSION_GRANTED;
+        return permission;
     }
 
     private void requestCameraPermission() {
@@ -146,7 +147,10 @@ public class ObjectRecognizer extends Fragment {
                     obj=detection;
             }
             canvas.drawRect(obj.getLocation(),paint);
+            Toast.makeText(getContext(), obj.getTitle().toString(), Toast.LENGTH_SHORT).show();
+
             getObject(obj.getTitle().toString());
+
         }
         else getObject("");
         imageView.setImageBitmap(bitmap);
@@ -207,7 +211,8 @@ public class ObjectRecognizer extends Fragment {
             @Override
             public void onClick(View view) {
 
-//        mTTS.speak(text, android.speech.tts.TextToSpeech.QUEUE_FLUSH, null);
+                String text=label.getText().toString();
+                mTTS.speak(text, android.speech.tts.TextToSpeech.QUEUE_FLUSH, null);
 
             }
         });
@@ -224,12 +229,16 @@ public class ObjectRecognizer extends Fragment {
     }
     private void getObject(String obj) {
         String text ="";
-        label.setText(obj);
-//        Cursor c=dbHandler.getObjName(obj);
-//        if (c.moveToNext()){
-//            text=c.getString(1);
-//        }
-//        mTTS.speak(text, android.speech.tts.TextToSpeech.QUEUE_FLUSH, null);
+//        label.setText(obj);
+        Cursor c=dbHandler.getObjName(obj);
+        if (c.moveToNext()){
+            text+="یہ ";
+            text+=c.getString(1);
+            text+=" ہے";
+
+            mTTS.speak(text, android.speech.tts.TextToSpeech.QUEUE_FLUSH, null);
+        }
+        label.setText(text);
     }
 
 
