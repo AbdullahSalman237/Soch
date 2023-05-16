@@ -147,7 +147,7 @@ public class ObjectRecognizer extends Fragment {
                     obj=detection;
             }
             canvas.drawRect(obj.getLocation(),paint);
-            Toast.makeText(getContext(), obj.getTitle().toString(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), obj.getTitle().toString(), Toast.LENGTH_SHORT).show();
 
             getObject(obj.getTitle().toString());
 
@@ -212,6 +212,7 @@ public class ObjectRecognizer extends Fragment {
             public void onClick(View view) {
 
                 String text=label.getText().toString();
+
                 mTTS.setSpeechRate(0.75f);
                 mTTS.speak(text, android.speech.tts.TextToSpeech.QUEUE_FLUSH, null);
 
@@ -239,6 +240,7 @@ public class ObjectRecognizer extends Fragment {
 
             mTTS.speak(text, android.speech.tts.TextToSpeech.QUEUE_FLUSH, null);
         }
+        else text="معزرت میں اس کو نہیں پہچان سکا";
         label.setText(text);
     }
 

@@ -191,10 +191,6 @@ public class YoloV5Classifier implements Classifier {
         if (tfLite != null) tfLite.setNumThreads(num_threads);
     }
 
-    @Override
-    public void setUseNNAPI(boolean isChecked) {
-//        if (tfLite != null) tfLite.setUseNNAPI(isChecked);
-    }
 
 
     @Override

@@ -17,8 +17,6 @@ public interface Classifier {
 
     void setNumThreads(int num_threads);
 
-    void setUseNNAPI(boolean isChecked);
-
     abstract float getObjThresh();
 
     public class Recognition {
