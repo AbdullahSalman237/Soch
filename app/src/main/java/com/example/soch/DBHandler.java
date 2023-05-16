@@ -19,7 +19,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String TABLE_IMAGE = "ImageTable";
     private static final String NAME_COL = "name";
     private static final String AGE_COL = "age";
-//    private static final String MED_COL = "med";
+    //    private static final String MED_COL = "med";
     private static final String IMAGE_ID = "image_id";
     private static final String option2 = "option2";
     private static final String option3 = "option3";
@@ -83,12 +83,12 @@ public class DBHandler extends SQLiteOpenHelper {
         db2.close();
 
     }
+    // Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_OBJECT , null);
     public Cursor getObjName(String eng)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_OBJECT , null);
-
+        Cursor cursor =db.rawQuery("SELECT * FROM " + TABLE_OBJECT + " WHERE "+ENG_NAME + " = '"+eng+"'"
+                ,null);
         return cursor;
     }
     public void insertMedTIme(String time) {
@@ -115,7 +115,7 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(RESULT, score);
         values.put(DATE_OF_QUIZ, date);
-            db2.insert(TABLE_SCORE, null, values);
+        db2.insert(TABLE_SCORE, null, values);
 
         db2.close();
 
@@ -157,7 +157,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         if (cursor2.moveToFirst()) {
             do {
-            size++;
+                size++;
             } while (cursor2.moveToNext());
         }
         imageHelper=new Image[size];

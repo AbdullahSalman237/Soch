@@ -16,16 +16,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
-    <ImageView
+    <TextView
+        android:text="کوئز کے لیے درج ذیل ہدایات پر عمل کریں۔"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:id="@+id/intructionmanual"
-        android:background="@drawable/quiz_instruction_new"
+        android:layout_width="349dp"
+        android:layout_height="441dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:text="- آپ کو ایک چیز کی تصویر دکھائی جائے گی۔"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="150dp"
         android:layout_width="349dp"
         android:layout_height="441dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:text="تصویر کے نیچے 4 آپشنز ہوں گے۔"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="300dp"
+        android:layout_width="349dp"
+        android:layout_height="441dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:text="- آپ کے خیال میں جو آپشن درست ہے اس پر کلک کریں۔"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="400dp"
+        android:layout_width="349dp"
+        android:layout_height="441dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:background="@drawable/round"

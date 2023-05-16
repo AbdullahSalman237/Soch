@@ -16,16 +16,62 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
-    <ImageView
+    <TextView
+        android:text="کسی چیز کی شناخت کے لیے درج ذیل ہدایات پر عمل کریں۔"
+        android:textSize="25dp"
+        android:textColor="@color/black"
         android:id="@+id/intructionmanual"
-        android:background="@drawable/obj_instructions"
+        android:layout_width="349dp"
+        android:layout_height="441dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:text="- برائے مہربانی کیمرہ آپشن پر کلک کریں۔"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="150dp"
         android:layout_width="349dp"
         android:layout_height="441dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    <TextView
+        android:text="- چیز کو کیمرے کے سامنے رکھیں"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="300dp"
+        android:layout_width="349dp"
+        android:layout_height="441dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:text="- براہ کرم ایک وقت میں ایک چیز کا پتہ لگائیں۔"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="400dp"
+        android:layout_width="349dp"
+        android:layout_height="441dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:text="- تصویر لے"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="550dp"
+        android:layout_width="349dp"
+        android:layout_height="441dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:gravity="center"
         android:id="@+id/doit"

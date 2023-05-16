@@ -83,7 +83,7 @@ public class ObjectRecognizer extends Fragment {
 
     private static final boolean TF_OD_API_IS_QUANTIZED = false;
 
-    private static final String TF_OD_API_MODEL_FILE = "epoch80-fp16.tflite";
+    private static final String TF_OD_API_MODEL_FILE = "best-fp16_0_2.tflite";
 
     private static final String TF_OD_API_LABELS_FILE = "file:///android_asset/labels.txt";
 
@@ -212,6 +212,7 @@ public class ObjectRecognizer extends Fragment {
             public void onClick(View view) {
 
                 String text=label.getText().toString();
+                mTTS.setSpeechRate(0.75f);
                 mTTS.speak(text, android.speech.tts.TextToSpeech.QUEUE_FLUSH, null);
 
             }
