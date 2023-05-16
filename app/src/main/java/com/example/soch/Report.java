@@ -16,7 +16,7 @@ public class Report extends AppCompatActivity {
 
 
     private DBHandler dbHandler;
-    private Button button;
+    private TextView button;
     private TextView total_quiz, avg,name,age;
 
     @Override

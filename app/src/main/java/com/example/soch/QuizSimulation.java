@@ -45,9 +45,9 @@ public class QuizSimulation extends Fragment {
     private Boolean quizStarted=false;
     private int i =0;
     private TextView button1,button2,button3,button4;
-    private Button start_quiz,new_quiz,cancel_quiz,resume_quiz,resultToHome,resultToGD,startToHome,startToGd,c,r;
+    private TextView start_quiz,new_quiz,cancel_quiz,resume_quiz,resultToHome,resultToGD,startToHome,startToGd;
     public String allOptions="";
-    private TextView textView1,textView2,textView3,textView4,textViewScore,result;
+    private TextView textView1,textView2,textView3,textView4,textViewScore,result,r;
     private ImageView imageView;
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     String currentDateAndTime;

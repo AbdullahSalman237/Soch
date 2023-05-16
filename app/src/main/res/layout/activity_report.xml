@@ -4,145 +4,204 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rectanglebg"
+    android:background="@color/yellow"
     tools:context=".Report">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/nameIcon"
         android:text="@string/name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="300dp"
-        android:layout_marginRight="30dp"
-        android:textSize="25dp"
+        android:textSize="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textColor="@color/black"
+        android:layout_marginTop="250dp"
 
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="245dp"
+
+        android:src="@drawable/userlogo"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/textView9"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/reportlogo"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView8"
+        app:layout_constraintBottom_toTopOf="@id/Name"/>
+
+    <!--    #FFD342-->
 
     <TextView
         android:id="@+id/Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="250dp"
         android:hint="@string/name"
         android:textColor="@color/black"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toStartOf="@+id/nameIcon"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        />
 
     <TextView
+        android:id="@+id/AgeIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/AgeIcon"
         android:text="@string/age"
-        android:textSize="25dp"
-        app:layout_constraintStart_toEndOf="@id/Age"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="300dp"
-        android:layout_marginLeft="5dp"
         android:textColor="@color/black"
+        android:textSize="30sp"
+        android:layout_marginTop="390dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"  />
 
-        />
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="390dp"
 
+        android:src="@drawable/age"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/Age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="300dp"
+
         android:hint="@string/age"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="30dp"
+        android:layout_marginTop="390dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-        />
+        app:layout_constraintTop_toTopOf="parent"  />
 
     <TextView
+        android:id="@+id/Total_quiz"
+        android:text="@string/Total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:id="@+id/Total_quiz"
-        app:layout_constraintTop_toBottomOf="@id/Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/Total"
-        android:layout_marginTop="30dp"
+        android:textSize="30dp"
         android:textColor="@color/black"
-        android:layout_marginRight="30dp"
+        android:layout_marginTop="320dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"  />
 
-        />
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="320dp"
 
+        android:src="@drawable/totalquestions"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/Quizes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="5dp"
+        android:textSize="30dp"
         android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintRight_toLeftOf="@+id/Total_quiz"
-        app:layout_constraintTop_toBottomOf="@id/Name"
+        android:layout_marginTop="320dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"  />
 
-        />
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/avgIcon"
         android:text="@string/average"
-        android:textSize="25dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Age"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="42dp"
+        android:textSize="30dp"
         android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="460dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        />
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="460dp"
 
+        android:src="@drawable/average"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/avg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="5dp"
+
         android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toStartOf="@id/avgIcon"
-        app:layout_constraintTop_toBottomOf="@id/Age"
-
-        />
-
-
-    <Button
-        android:id="@+id/userpage"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/round"
-        android:text="تفصیلات"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textSize="30dp"
+        android:layout_marginTop="460dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:gravity="center"
+        android:id="@+id/userpage"
+        android:text="تفصیلات"
+        android:layout_width="230dp"
+        android:layout_height="60dp"
+        android:background="@drawable/round"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avgIcon"
+        />
+
+    <TextView
         android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_width="158dp"
+        android:layout_height="74dp"
         android:layout_marginEnd="-10dp"
         android:text="رپورٹ"
-        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textSize="45sp"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

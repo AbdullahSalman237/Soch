@@ -46,13 +46,13 @@ import java.util.Locale;
 
 public class ObjectRecognizer extends Fragment {
     View view;
-    Button r;
+    TextView r;
     private DBHandler dbHandler;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     public static final float MINIMUM_CONFIDENCE_TF_OD_API = 0.35f;
     public TextView label;
     private static final int PERMISSION_REQUEST_CAMERA = 0;
-    private Button mButtonSpeak;
+    private TextView mButtonSpeak;
 
     private boolean hasCameraPermission() {
         int cameraPermission = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA);
@@ -191,7 +191,7 @@ public class ObjectRecognizer extends Fragment {
                 }
             }
         });
-        Button button = view.findViewById(R.id.button);
+        TextView button = view.findViewById(R.id.button);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

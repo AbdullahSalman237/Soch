@@ -4,95 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:background="@color/white">
+    android:background="@color/orange"
+    >
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView6"
         android:layout_width="104dp"
         android:layout_height="113dp"
-        android:layout_marginTop="16dp"
-        android:background="#005C1515"
-        android:contentDescription="@string/todo"
+        android:contentDescription="@string/dkdkdk"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/patientname"
-        android:layout_width="397dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="256dp"
-        android:background="@drawable/colouring"
-        android:drawableTint="#0A0A0B"
-        android:ems="10"
-        android:hint="@string/name"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:scaleX="@dimen/material_emphasis_high_type"
-        android:textAlignment="center"
-        android:textColorHint="#090909"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.569"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        tools:targetApi="m" />
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="174dp"
-        android:layout_marginTop="176dp"
-        android:layout_marginEnd="179dp"
-        android:layout_marginBottom="43dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="104dp"
         android:text="@string/details"
         android:textColor="#131313"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/patientname"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/medication"
-        android:layout_width="150dp"
-        android:layout_height="120dp"
-
-
-        android:layout_marginBottom="-355dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/addMed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_marginBottom="-90dp"
-        android:background="@drawable/round"
-        android:text="ادویات کا وقت"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/signup"
+        android:background="@color/orange"
+
+        app:layout_constraintBottom_toTopOf="@+id/addMed"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/patientage"
+        />
 
     <EditText
 
         android:id="@+id/patientage"
-        android:layout_width="397dp"
+        android:layout_width="300dp"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
         android:background="@drawable/colouring"
         android:drawableTint="#0A0A0B"
         android:ems="10"
@@ -100,32 +61,90 @@
         android:importantForAutofill="no"
         android:inputType="number"
         android:minHeight="48dp"
-        android:scaleX="@dimen/material_emphasis_high_type"
         android:textAlignment="center"
         android:textColorHint="#090909"
         android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.569"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/patientname"
-        tools:targetApi="m" />
-
-
-    <Button
-        android:id="@+id/signup"
-        android:layout_width="262dp"
-        android:layout_height="69dp"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/round"
-        android:onClick="signup"
-        android:text="@string/darjkarein"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:iconPadding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="m" />
+
+    <EditText
+        android:id="@+id/patientname"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:hint="@string/name"
+        android:drawableTint="#0A0A0B"
+        android:background="@drawable/colouring"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        tools:targetApi="m"
+        android:textAlignment="center"
+        android:textColorHint="#090909"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/patientage"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="200dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/updateData"
+        android:contentDescription="@string/editagainn"
+        android:src="@drawable/clock"
+        android:layout_width="36dp"
+        android:layout_height="43dp"
+        android:textSize="15sp"
+        android:layout_marginTop="600dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"  />
+    <ImageView
+        android:id="@+id/tickmark"
+        android:contentDescription="@string/editagainn"
+        android:src="@drawable/tick"
+        android:layout_width="36dp"
+        android:layout_height="43dp"
+        android:textSize="15sp"
+        android:layout_marginTop="650dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"  />
+    <TextView
+        android:gravity="center"
+        android:id="@+id/signup"
+        android:layout_width="100dp"
+        android:layout_height="42dp"
+        android:background="@drawable/round2"
+        android:text="@string/darjkarein"
+        android:onClick="signup"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginTop="650dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"  />
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/addMed"
+        android:layout_width="100dp"
+        android:layout_height="42dp"
+        android:textColor="@color/white"
+        android:background="@drawable/round2"
+        android:text="ادویات کا وقت"
+        android:textSize="15sp"
+        android:layout_marginTop="600dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"  />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

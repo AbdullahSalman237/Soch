@@ -25,7 +25,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements OnItemClickListener {
     //ActivityMainBinding binding;
-    private Button SubmitDetails,resume,addMed;
+    private TextView SubmitDetails,resume,addMed;
     private DBHandler dbHandler;
     private EditText NameEdt;
     private EditText AgeEdt;

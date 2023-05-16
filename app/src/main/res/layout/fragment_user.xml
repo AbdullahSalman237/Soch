@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
+    android:layout_height="731dp"
+    android:background="@color/orange"
     android:textAlignment="center"
     app:flow_horizontalAlign="center"
     app:flow_verticalAlign="center"
@@ -12,117 +12,127 @@
 
     <TextView
         android:id="@+id/textView3"
+        android:text="@string/details"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textSize="35sp"
+        android:textColor="#131212"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="188dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/details"
-        android:textColor="#131212"
-        android:textSize="35sp"
-        android:textStyle="bold"
+        android:layout_marginTop="230dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.657"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"  />
 
     <TextView
         android:id="@+id/patientage"
+        android:text="@string/age"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="355dp"
+        android:src="@drawable/age"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/medicationTime"
+        android:text="@string/medicationtime"
+        android:textColor="@color/black"
+        android:textSize="25sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:layout_marginTop="24dp"
-        android:text="@string/age"
-        android:textColor="@color/black"
-        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.809"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/patientname" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/medicationTime"
-        android:layout_width="80dp"
-        android:layout_height="150dp"
-        android:layout_marginVertical="20dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/medicationtime"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/patientage" />
 
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/pill"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
     <TextView
         android:id="@+id/patientname"
+        android:text="@string/name"
+        android:textSize="25sp"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="20dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/name"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-
+        android:layout_marginTop="300dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="439dp"
-        android:layout_height="248dp"
-        android:contentDescription="@string/oldcover"
-        android:src="@drawable/cover"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="305dp"
+        android:src="@drawable/userlogo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/medicationTime"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="ImageContrastCheck" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="176dp"
-        android:layout_height="154dp"
-        android:layout_marginTop="36dp"
-        android:contentDescription="@string/logooo"
+        android:id="@+id/imageView6"
+        android:layout_width="104dp"
+        android:layout_height="113dp"
+        android:contentDescription="@string/dkdkdk"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ImageContrastCheck" />
+        android:layout_marginTop="100dp"
+        />
 
     <ImageView
         android:id="@+id/updateData"
-        android:layout_width="36dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="54dp"
-        android:layout_marginTop="192dp"
-        android:layout_marginEnd="10dp"
         android:contentDescription="@string/editagainn"
         android:src="@android:drawable/ic_menu_edit"
-        app:layout_constraintEnd_toStartOf="@+id/textView3"
+        android:layout_width="36dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="230dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="#E91E63"
         tools:ignore="ImageContrastCheck" />
 
-    <Button
+    <TextView
+        android:gravity="center"
         android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:layout_marginBottom="-450dp"
-        android:background="@drawable/round"
+        android:layout_width="230dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/round2"
         android:text="رپورٹ"
         android:textSize="20sp"
+        android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

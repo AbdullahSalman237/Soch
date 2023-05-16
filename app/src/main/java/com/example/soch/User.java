@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,11 +23,10 @@ public class User extends Fragment implements OnItemClickListener{
     View view;
     private DBHandler dbHandler;
     ImageView updateData;
-    private TextView NameEdt, AgeEdt;
+    private TextView NameEdt, AgeEdt,btn;
     RecyclerView MedEdt;
     private MedAdapter medAdapter;
     public ArrayList<String> MedicationTime;
-    private Button btn,resume;
     @Nullable
     @Override
 
@@ -53,7 +51,7 @@ public class User extends Fragment implements OnItemClickListener{
         AgeEdt = (TextView) view.findViewById(R.id.patientage);
 
         updateData=(ImageView) view.findViewById(R.id.updateData);
-        btn=(Button)view.findViewById(R.id.button6);
+        btn=(TextView) view.findViewById(R.id.button6);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

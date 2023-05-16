@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/white"
+    android:background="@color/orange"
     android:textAlignment="center"
     tools:context=".QuizSimulation">
 
@@ -16,16 +16,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="100dp"
-
         android:text="@string/score"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option4"
-        app:layout_constraintVertical_bias="0.399" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.959" />
 
     <TextView
         android:id="@+id/score"
@@ -34,15 +34,16 @@
         android:layout_marginHorizontal="5dp"
 
 
+        android:layout_marginStart="124dp"
         android:text="@string/_0"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/ScoreBox"
-        app:layout_constraintTop_toBottomOf="@+id/option1"
 
-        app:layout_constraintVertical_bias="0.399"
+        app:layout_constraintTop_toBottomOf="@+id/option1"
+        app:layout_constraintVertical_bias="0.865"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -52,34 +53,34 @@
         android:contentDescription="@string/imageee"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.254"
-        tools:ignore="ImageContrastCheck"
-         />
+        app:layout_constraintVertical_bias="0.314"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="112dp"
         android:layout_marginEnd="104dp"
+        android:textSize="40sp"
         android:text="امتحان"
         android:textColor="@color/black"
-        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/option1"
-        android:layout_width="132dp"
-        android:layout_height="74dp"
+        android:layout_width="130dp"
+        android:layout_height="63dp"
         android:layout_marginBottom="160dp"
-
+        android:background="@drawable/round2"
         android:gravity="center"
         android:text="@string/chaar"
         android:textColor="@color/white"
@@ -92,14 +93,14 @@
 
     <TextView
         android:id="@+id/option3"
-        android:layout_width="132dp"
-        android:layout_height="74dp"
+        android:layout_width="130dp"
+        android:layout_height="63dp"
         android:layout_marginBottom="260dp"
 
-        android:text="@string/aik"
-        android:textColor="#F3F0EF"
-        android:textSize="22sp"
         android:gravity="center"
+        android:text="@string/aik"
+        android:background="@drawable/round2"
+        android:textSize="22sp"
         android:textStyle="bold"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -110,14 +111,14 @@
 
     <TextView
         android:id="@+id/option4"
-        android:layout_width="132dp"
-        android:layout_height="74dp"
+        android:layout_width="130dp"
+        android:layout_height="63dp"
         android:layout_marginBottom="160dp"
-
-        android:textColor="@color/white"
-        android:text="@string/teen"
-        android:textSize="22sp"
+        android:background="@drawable/round2"
         android:gravity="center"
+        android:text="@string/teen"
+        android:textColor="@color/white"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/option1"
@@ -126,10 +127,10 @@
 
     <TextView
         android:id="@+id/option2"
-        android:layout_width="132dp"
-        android:layout_height="74dp"
+        android:layout_width="130dp"
+        android:layout_height="63dp"
         android:layout_marginBottom="260dp"
-
+        android:background="@drawable/round2"
         android:gravity="center"
         android:text="@string/kssd"
         android:textColor="@color/white"
@@ -144,11 +145,14 @@
         android:id="@+id/imageView6"
         android:layout_width="104dp"
         android:layout_height="113dp"
+        android:contentDescription="@string/dkdkdk"
         android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/dkdkdk" />
+        app:layout_constraintVertical_bias="0.192" />
 
     <TextView
         android:id="@+id/textView6"
