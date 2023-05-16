@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +15,7 @@ public class Report extends AppCompatActivity {
 
 
     private DBHandler dbHandler;
-    private TextView button;
+    private TextView button,minIcon,maxIcon;
     private TextView total_quiz, avg,name,age;
 
     @Override
@@ -25,14 +24,13 @@ public class Report extends AppCompatActivity {
         setContentView(R.layout.activity_report);
         getSupportActionBar().hide();
         getReport();
+
         button=findViewById(R.id.userpage);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Report.this, Dashboard.class));
-
-
             }
         });
     }
@@ -47,8 +45,6 @@ public class Report extends AppCompatActivity {
         {
             name.setText(c.getString(0));
             age.setText(c.getString(1));
-
-
         }
 
         c = dbHandler.getAllScores();
@@ -78,9 +74,9 @@ public class Report extends AppCompatActivity {
             average = total / results.size(); // finding ther average value
 //            Toast.makeText(this, "avg" + String.valueOf(average), Toast.LENGTH_SHORT).show();
 
-
             avg = findViewById(R.id.avg);
             avg.setText(String.valueOf(average));
+
         }
     }
 }

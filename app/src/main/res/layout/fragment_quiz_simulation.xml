@@ -64,14 +64,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="104dp"
         android:textSize="40sp"
         android:text="امتحان"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.525"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -79,7 +79,7 @@
         android:id="@+id/option1"
         android:layout_width="130dp"
         android:layout_height="63dp"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="130dp"
         android:background="@drawable/round2"
         android:gravity="center"
         android:text="@string/chaar"
@@ -95,7 +95,7 @@
         android:id="@+id/option3"
         android:layout_width="130dp"
         android:layout_height="63dp"
-        android:layout_marginBottom="260dp"
+        android:layout_marginBottom="220dp"
 
         android:gravity="center"
         android:text="@string/aik"
@@ -107,13 +107,14 @@
         app:layout_constraintEnd_toStartOf="@id/option2"
 
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
+
+        />
 
     <TextView
         android:id="@+id/option4"
         android:layout_width="130dp"
         android:layout_height="63dp"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="130dp"
         android:background="@drawable/round2"
         android:gravity="center"
         android:text="@string/teen"
@@ -129,7 +130,7 @@
         android:id="@+id/option2"
         android:layout_width="130dp"
         android:layout_height="63dp"
-        android:layout_marginBottom="260dp"
+        android:layout_marginBottom="220dp"
         android:background="@drawable/round2"
         android:gravity="center"
         android:text="@string/kssd"

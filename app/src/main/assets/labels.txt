@@ -15,6 +15,6 @@ waterbottle
 glasses
 basket_bin
 bed
-glass
+television
 spoon
 bowl

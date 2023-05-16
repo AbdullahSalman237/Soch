@@ -3,11 +3,11 @@
     <string name="splash_screen">Splash Screen</string>
     <string name="mobile_app">Mobile App</string>
     <string name="enter_details">Enter Details</string>
-    <string name="name">نام:</string>
-    <string name="age">عمر:</string>
+    <string name="name">نام</string>
+    <string name="age">عمر</string>
     <string name="medicationtime">ادویات کا وقت</string>
     <string name="todo">TODO</string>
-    <string name="quiz">جائزہ</string>
+    <string name="quiz">امتحان</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="start_qiuz">Start Quiz</string>
@@ -36,7 +36,7 @@
     <string name="_4">4</string>
     <string name="quizz">جائزہ</string>
     <string name="_0">0</string>
-    <string name="score">سکور</string>
+    <string name="score">سکور(score)</string>
     <string name="aik">۱</string>
     <string name="teen">۳</string>
     <string name="chaar">۴</string>
@@ -71,8 +71,8 @@
     <string name="in">تفصیلات</string>
     <string name="nope">Nope</string>
     <string name="okay">Okay</string>
-    <string name="average">اوسط جوابات:</string>
-    <string name="Total">کل امتحان:</string>
+    <string name="average">اوسط</string>
+    <string name="Total">کل سوال نامے</string>
     <string name="speak">سنو</string>
     <string name = "urududud">شروع کریں></string>
     <string name="skjnd">یہاں آپ کی تفصیلات دستیاب ہیں: - یہ صفحہ آپ کا نام، عمر، دوا کا وقت دکھاتا ہے۔ - آپ کئی بار دوائیاں شامل کرسکتے ہیں۔ - وقت کے لئے ایک گھڑی ظاہر ہوگی۔ - اس کے بعد آپ اپنی تفصیلات محفوظ کر سکتے ہیں۔ - یہ تفصیلات ہمارے ڈیٹا بیس میں محفوظ ہو جائیں گی۔</string>
